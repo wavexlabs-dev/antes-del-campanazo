@@ -1,0 +1,309 @@
+{
+  "data_cutoff": "2026-10-26",
+  "anthropic": {
+    "source_date": "2026-10-26",
+    "scope": "User-supplied PDF only; no independent authenticity check or external data added.",
+    "page_convention": "pdf_page is 1-based physical PDF page; printed_page is the number printed within the filing.",
+    "facts": [
+      {
+        "id": "origin",
+        "narrative_es": "Anthropic nació en enero de 2021.",
+        "detail": "Incorporated as a Delaware public benefit corporation in January 2021.",
+        "pdf_page": 28,
+        "printed_page": "17"
+      },
+      {
+        "id": "claude_launch",
+        "narrative_es": "En el primer trimestre de 2023 lanzó públicamente su primer producto comercial: Claude.",
+        "detail": "The cited passage establishes quarter, not a specific launch day.",
+        "pdf_page": 72,
+        "printed_page": "61"
+      },
+      {
+        "id": "annual_revenue",
+        "narrative_es": "Ingresos anuales de 41 millones de dólares en 2023, 386 millones en 2024 y 4,585 millones en 2025.",
+        "unit": "USD millions",
+        "values": {
+          "FY2023": 41,
+          "FY2024": 386,
+          "FY2025": 4585
+        },
+        "basis": "GAAP revenue, years ended December 31; annual data derived from audited statements.",
+        "pdf_page": 33,
+        "printed_page": "22"
+      },
+      {
+        "id": "same_period_growth",
+        "narrative_es": "Ingresó 16,286 millones de dólares en los primeros seis meses de 2026: aproximadamente 14 veces los 1,163 millones del mismo semestre de 2025.",
+        "unit": "USD millions",
+        "values": {
+          "H1_2025": 1163,
+          "H1_2026": 16286
+        },
+        "derived_ratio": 14.003439380911436,
+        "basis": "Six months ended June 30 in both years; unaudited interim GAAP revenue. Not full-year revenue, ARR or run-rate.",
+        "pdf_page": 33,
+        "printed_page": "22"
+      },
+      {
+        "id": "compute_expense",
+        "narrative_es": "El gasto de cómputo e infraestructura fue de 8,945 millones de dólares en el primer semestre de 2026.",
+        "unit": "USD millions",
+        "values": {
+          "FY2023": 433,
+          "FY2024": 2522,
+          "FY2025": 7326,
+          "H1_2025": 2334,
+          "H1_2026": 8945
+        },
+        "basis": "Operating expense; not cash paid or future commitments. Supports research, model development, customer workloads and internal use; not a pure cost-of-revenue measure.",
+        "sources": [
+          {
+            "pdf_page": 33,
+            "printed_page": "22"
+          },
+          {
+            "pdf_page": 367,
+            "printed_page": "F-21"
+          }
+        ]
+      },
+      {
+        "id": "loss_is_not_cash_burn",
+        "narrative_es": "En el primer semestre de 2026 tuvo pérdida operativa de 693 millones de dólares, pero flujo de efectivo operativo positivo de 3,929 millones.",
+        "unit": "USD millions",
+        "H1_2026": {
+          "operating_loss": -693,
+          "net_loss": -80748,
+          "fair_value_change_convertible_notes_derivatives_SAFEs": -72388,
+          "net_cash_from_operations": 3929,
+          "net_cash_used_in_investing": -17181
+        },
+        "basis": "Net loss includes 72,388 million fair-value adjustment primarily driven by increased enterprise valuation, added back in cash-flow reconciliation. Do not depict 80,748 million net loss as cash spent. Operating cash flow depends also on timing and working capital; investing outflows include securities purchases, not only infrastructure.",
+        "sources": [
+          {
+            "pdf_page": 33,
+            "printed_page": "22"
+          },
+          {
+            "pdf_page": 179,
+            "printed_page": "168"
+          },
+          {
+            "pdf_page": 358,
+            "printed_page": "F-12"
+          }
+        ]
+      },
+      {
+        "id": "infrastructure_commitments",
+        "narrative_es": "El documento describe unos 417 mil millones de dólares en pagos mínimos futuros de nuevos contratos y ampliaciones de cómputo e infraestructura posteriores a 2025.",
+        "unit": "USD billions",
+        "future_minimum_payments": 417,
+        "basis": "Note 15 subsequent events: agreements subsequent to December 31, 2025, commencing 2026-2027 with terms from less than one year to 20 years. Not already-incurred expenditure, annual spending or GDP impact. Separately estimates 125-150 billion under expanded agreements with commercial terms not finalized; do not casually combine.",
+        "pdf_page": 409,
+        "printed_page": "F-63"
+      },
+      {
+        "id": "ipo_pending",
+        "narrative_es": "El S-1 está fechado el 26 de octubre de 2026. El IPO sigue propuesto: precio y número de acciones en blanco; solicitud para cotizar en Nasdaq como ANT.",
+        "basis": "Preliminary prospectus; securities cannot be sold until effective registration. No verified listing date, offering price, final valuation or completed bell-ringing event. Company and selling stockholders both propose sales; Anthropic receives no proceeds from selling-stockholder sales.",
+        "sources": [
+          {
+            "pdf_page": 1,
+            "printed_page": null
+          },
+          {
+            "pdf_page": 2,
+            "printed_page": null
+          }
+        ]
+      }
+    ],
+    "comparison_rules": [
+      "H1 2026 vs H1 2025 for year-over-year growth; full-year 2025 is a different period length.",
+      "Run-rate revenue annualizes trailing 28-day consumption fees x13 plus monthly subscription fees x12. It is neither GAAP revenue nor a forecast (PDF14/printed3; PDF78/printed67).",
+      "In CSP marketplace arrangements Anthropic is principal and recognizes revenue on a gross basis, with partner and compute costs separately expensed. Cross-company comparisons need compatible gross/net accounting (PDF367/printedF-21).",
+      "Revenue, operating result, net result, cash flow, valuation, funding and commitments must remain distinct.",
+      "Blank September/IPO amounts in this PDF cannot be filled by inference.",
+      "The bell-ringing scene must be labeled possible future chapter, not completed historical event."
+    ],
+    "visual_validation": "Rendered and visually inspected PDF33; table values and period headings confirmed."
+  },
+  "comparison": {
+    "researched_on": "2026-10-26",
+    "language": "es-MX",
+    "methodology": {
+      "label_es": "Ingresos en sus años 3, 4 y 5",
+      "subtitle_es": "Contamos el año de constitución como año 1. Cada cifra corresponde a un ejercicio anual completo terminado el 31 de diciembre.",
+      "age_index_formula": "calendar_year - incorporation_year + 1",
+      "age_definition": "Ordinal calendar year since incorporation, inclusive. Not exact elapsed age, anniversary year, years since first revenue or years since commercial launch.",
+      "unit": "USD millions",
+      "basis": "Nominal annual reported revenue; no inflation adjustment. No ARR, annualized run-rate, valuation or half-year data in this comparison.",
+      "display_rounding": "Round historical company values to one decimal or whole USD millions, while retaining exact values in this file.",
+      "preferred_detail_es": "La misma etapa aproximada, en épocas distintas. Año 1 es el de constitución; los ingresos son anuales y en dólares de cada época, sin ajustar por inflación.",
+      "limits_es": "No es una clasificación de mejores empresas ni una predicción. Comercio, publicidad e IA tienen costos, márgenes y reglas de reconocimiento distintos. La comparación no iguala tiempo de operación, tamaño del mercado ni poder adquisitivo."
+    },
+    "companies": [
+      {
+        "id": "anthropic",
+        "name": "Anthropic",
+        "incorporation_year": 2021,
+        "incorporation_month": 1,
+        "origin_source_id": "anthropic_user_pdf",
+        "origin_locator": "PDF physical page 28; printed page 17",
+        "revenue_label": "Revenue",
+        "revenue_source_id": "anthropic_user_pdf",
+        "revenue_locator": "PDF physical page 33; printed page 22",
+        "records": [
+          {
+            "age_index": 3,
+            "calendar_year": 2023,
+            "revenue_usd_millions": 41
+          },
+          {
+            "age_index": 4,
+            "calendar_year": 2024,
+            "revenue_usd_millions": 386
+          },
+          {
+            "age_index": 5,
+            "calendar_year": 2025,
+            "revenue_usd_millions": 4585
+          }
+        ],
+        "model_context_es": "Modelos y productos de IA. El PDF indica reconocimiento bruto en acuerdos con marketplaces de nube cuando Anthropic actúa como principal; costos de socios y cómputo se registran aparte.",
+        "accounting_locator": "PDF physical page 367; printed F-21"
+      },
+      {
+        "id": "amazon",
+        "name": "Amazon",
+        "incorporation_year": 1994,
+        "origin_source_id": "amazon_ir_faq",
+        "origin_locator": "When did Amazon.com start?",
+        "revenue_label": "Net sales",
+        "revenue_source_id": "amazon_1999_10ka",
+        "revenue_locator": "Physical PDF page 4, Item 6 Selected Consolidated Financial Data, Net sales row; values in thousands converted to millions",
+        "records": [
+          {
+            "age_index": 3,
+            "calendar_year": 1996,
+            "revenue_usd_millions": 15.746
+          },
+          {
+            "age_index": 4,
+            "calendar_year": 1997,
+            "revenue_usd_millions": 147.787
+          },
+          {
+            "age_index": 5,
+            "calendar_year": 1998,
+            "revenue_usd_millions": 609.819
+          }
+        ],
+        "model_context_es": "Comercio minorista: ventas de productos netas de devoluciones y descuentos, más cargos de envío. Net sales significa ventas netas, no ganancia neta. La tienda abrió en julio de 1995, después de constituirse.",
+        "source_version_note": "Use 609.819M for 1998, as presented in the subsequent 1999 10-K/A. The original 1998 10-K reports 609.996M; do not silently mix historical source versions. Displaying 610M rounds both similarly, but this dataset uses the later filing consistently."
+      },
+      {
+        "id": "google",
+        "name": "Google",
+        "incorporation_year": 1998,
+        "incorporation_month": 9,
+        "origin_source_id": "google_final_s1a_2004",
+        "origin_locator": "Prospectus Summary / Corporate Information; also Management's Discussion and Analysis, Overview, printed page 50",
+        "revenue_label": "Revenues",
+        "revenue_source_id": "google_final_s1a_2004",
+        "revenue_locator": "Summary Consolidated Financial Data and Selected Consolidated Financial Data, Revenues row, years ended December 31, 2000, 2001 and 2002; values in thousands converted to millions",
+        "records": [
+          {
+            "age_index": 3,
+            "calendar_year": 2000,
+            "revenue_usd_millions": 19.108
+          },
+          {
+            "age_index": 4,
+            "calendar_year": 2001,
+            "revenue_usd_millions": 86.426
+          },
+          {
+            "age_index": 5,
+            "calendar_year": 2002,
+            "revenue_usd_millions": 439.508
+          }
+        ],
+        "model_context_es": "Principalmente publicidad en buscadores. El S-1/A final reconoce los ingresos de AdSense brutos porque Google es el obligado principal; los pagos a socios aparecen como costos de adquisición de tráfico.",
+        "accounting_locator": "Notes to Consolidated Financial Statements, Revenue Recognition, printed F-9; Cost of Revenues section",
+        "source_version_note": "Use the August 18, 2004 Amendment No. 9. The initial April 29 S-1 reported net revenues of 347.848M for 2002, while the final amended presentation reports revenues of 439.508M. Do not mix the initial net presentation with the final gross presentation."
+      }
+    ],
+    "sources": [
+      {
+        "id": "anthropic_user_pdf",
+        "title": "Anthropic preliminary prospectus supplied by the user",
+        "user_supplied_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+        "type": "user-provided primary document, parent-verified values",
+        "date_on_document": "2026-10-26"
+      },
+      {
+        "id": "amazon_ir_faq",
+        "title": "Amazon Investor Relations — FAQs",
+        "url": "https://ir.aboutamazon.com/faqs/default.aspx",
+        "type": "official investor relations",
+        "short_quote": "The company was incorporated in 1994 in the state of Washington"
+      },
+      {
+        "id": "amazon_1999_10ka",
+        "title": "Amazon.com Form 10-K/A, fiscal year ended December 31, 1999",
+        "url": "https://s2.q4cdn.com/299287126/files/doc_financials/annual/10KA_99.pdf",
+        "type": "official investor-relations hosted SEC filing",
+        "table_units": "USD thousands",
+        "table_values": {
+          "1996": 15746,
+          "1997": 147787,
+          "1998": 609819
+        },
+        "locator": "PDF page 4, Item 6"
+      },
+      {
+        "id": "google_final_s1a_2004",
+        "title": "Google Form S-1/A, Amendment No. 9, August 18, 2004",
+        "url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312504142742/ds1a.htm",
+        "type": "SEC primary filing",
+        "short_quote": "We were incorporated in California in September 1998.",
+        "table_units": "USD thousands",
+        "table_values": {
+          "2000": 19108,
+          "2001": 86426,
+          "2002": 439508
+        }
+      }
+    ],
+    "derived_comparisons": {
+      "age_index_5": {
+        "anthropic_to_amazon_ratio": 7.5186243787090925,
+        "anthropic_to_google_ratio": 10.432119551862538,
+        "round_display": {
+          "amazon": "7.5×",
+          "google": "10.4×"
+        },
+        "derivation": "4585 / 609.819 and 4585 / 439.508; rounded approximations",
+        "copy_es": "En el quinto año calendario contado desde su constitución, Anthropic reportó ingresos anuales 7.5 veces los de Amazon y 10.4 veces los de Google en esa etapa. Son dólares nominales de épocas y negocios distintos."
+      }
+    },
+    "exclude_from_same_age_annual_chart": [
+      "Anthropic H1 2026 revenue of USD16,286M: only six months and age index6, so do not put it next to a full annual value.",
+      "Valuation, funding, ARR and run-rate revenue must not share this revenue scale.",
+      "Do not fill years1-2 with zero; this research did not establish Anthropic revenue for those years.",
+      "Do not label the index exact age3/4/5 or exactly five years after founding."
+    ],
+    "valuation_chart_reference": {
+      "provided_by": "user",
+      "visible_attribution": "SemiAnalysis watermark",
+      "original_source_url": null,
+      "original_publication_date": null,
+      "verification_status": "Original publication was not located in targeted web searches. Attribution is based only on the visible watermark, not verified provenance.",
+      "recommended_caption_es": "Referencia compartida por el usuario. Marca visible: SemiAnalysis. Fecha y metodología originales no verificadas. La gráfica muestra valuaciones, no ingresos.",
+      "handling": "Keep the supplied image as a separate visual reference. Do not infer exact datapoints or treat private-company valuations and public market capitalization as a standardized revenue comparison."
+    }
+  }
+}

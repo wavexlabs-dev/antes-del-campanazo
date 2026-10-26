@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Antes del campanazo · La historia de Anthropic</title>
+ <meta name="description" content="Recorre la historia de Anthropic, descubre cómo creció y entiende su propuesta de salida a bolsa. Una historia interactiva con fuentes y comparaciones.">
+ <meta name="theme-color" content="#f5f2ea"><meta property="og:title" content="Antes del campanazo"><meta property="og:description" content="Una historia para entender Anthropic y su propuesta de IPO, a tu ritmo."><meta property="og:type" content="website"><meta property="og:url" content="https://antes-del-campanazo.pabloparedes-mx.chatgpt.site">
+ <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css">
+ <script src="./vendor/gsap.min.js" defer></script><script src="./vendor/ScrollTrigger.min.js" defer></script><script type="module" src="./app.js"></script>
+</head>
+<body>
+ <a class="skip-link" href="#origen">Ir a la historia</a>
+ <header class="site-header">
+  <a class="wordmark" href="#origen">Antes del campanazo<span>.</span></a>
+  <div class="header-actions"><button id="chapters-button" class="plain-button" aria-haspopup="dialog">Capítulos <span aria-hidden="true">↗</span></button><button id="sources-button" class="plain-button" aria-haspopup="dialog">Fuentes</button><button id="motion-button" class="icon-button" aria-label="Pausar animación" aria-pressed="false"><span aria-hidden="true">Ⅱ</span></button></div>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+ </header>
+ <main id="story">
+  <aside class="visual-rail" aria-label="Ilustración de la historia">
+   <div class="stage-heading"><span id="stage-number">01 / 09</span><span id="stage-caption">Una habitación. Todo por construir.</span></div>
+   <canvas id="story-canvas" role="img" aria-label="El personaje de Claude acompaña una historia ilustrada que comienza en un laboratorio"></canvas>
+   <div id="valuation-stage" class="valuation-stage" hidden><button class="chart-open" aria-label="Ampliar gráfica de valuación por años desde la fundación"><img src="./assets/valuation-reference.png" width="1379" height="869" alt="Gráfica compartida: valuación en dólares frente a años desde la fundación de Anthropic y otras empresas. Marca visible SemiAnalysis."><span>Ampliar gráfica <span aria-hidden="true">↗</span></span></button></div>
+   <div class="stage-groundnote" id="stage-note">Ilustración simbólica</div>
+  </aside>
+  <div class="story-content">
+   <section class="story-section hero" id="origen" data-scene="0" aria-labelledby="origin-title">
+    <div class="section-inner">
+     <p class="eyebrow reveal">UNA HISTORIA SOBRE ANTHROPIC</p>
+     <h1 id="origin-title" class="reveal">Antes del<br>campanazo<span>.</span></h1>
+     <p class="lead reveal">Antes de las cifras enormes, hubo una habitación, un equipo y una pregunta.</p>
+     <div class="origin-note reveal"><span class="year-mark">2021</span><p>Anthropic nace como un laboratorio de investigación. Su propósito declarado: desarrollar inteligencia artificial de forma responsable.</p></div>
+     <p class="scroll-cue reveal"><span aria-hidden="true">↓</span> Baja. La historia empieza aquí.</p>
+     <details class="story-detail reveal"><summary>¿Quiénes empezaron?</summary><p>Un equipo de investigadores de IA, con Dario y Daniela Amodei entre sus cofundadores. La empresa se constituyó en enero de 2021.</p><p class="small-note">La mascota nos acompaña como recurso narrativo; no significa que ya existiera en esa fecha.</p></details>
+     <button class="source-link" data-source="0">La fuente de este momento ↗</button>
+    </div>
+   </section>
+   <section class="story-section" id="claude" data-scene="1" aria-labelledby="claude-title"><div class="section-inner">
+    <p class="eyebrow reveal"><span>2023</span> · EL ENCUENTRO</p><h2 id="claude-title" class="reveal">Alguien al<br>otro lado.</h2>
+    <p class="lead reveal">Claude llega al público. Lo que se investigaba dentro del laboratorio empieza a ser útil fuera de él.</p>
+    <p class="reveal">El primer producto comercial de Anthropic se lanzó públicamente en el primer trimestre de 2023. Ahora había personas haciendo preguntas, resolviendo tareas y encontrando razones para volver.</p>
+    <div class="handwritten-note reveal">Una conversación era también<br>el comienzo de un negocio.</div>
+    <details class="story-detail reveal"><summary>¿Para qué se usa?</summary><p>Anthropic describe usos en programación, análisis financiero, creación de contenido, análisis legal y operaciones de atención a clientes. Es la descripción de la empresa en su prospecto, no una medición independiente de los resultados de cada uso.</p></details>
+    <button class="source-link" data-source="1">Lanzamiento y usos · S-1, pp.61 y 139 ↗</button>
+   </div></section>
+   <section class="story-section" id="crecimiento" data-scene="2" aria-labelledby="growth-title"><div class="section-inner">
+    <p class="eyebrow reveal"><span>2023–2025</span> · EL CRECIMIENTO</p><h2 id="growth-title" class="reveal">La habitación<br>se queda pequeña.</h2>
+    <p class="lead reveal">De 41 millones de dólares de ingresos en 2023 a 4,585 millones en 2025.</p>
+    <div class="revenue-receipt reveal" aria-live="polite"><span class="receipt-top">ANTHROPIC · INGRESOS DE <span id="revenue-year">2025</span></span><span class="receipt-number" id="revenue-value">4,585</span><span class="receipt-unit">millones de dólares</span><span class="receipt-bottom">Doce meses completos · USD</span></div>
+    <div class="choice-row reveal" aria-label="Elegir año de ingresos"><button data-revenue-year="2023" aria-pressed="false">2023</button><button data-revenue-year="2024" aria-pressed="false">2024</button><button data-revenue-year="2025" aria-pressed="true">2025</button></div>
+    <details class="story-detail reveal" id="semester-detail"><summary>Y en 2026, el ritmo volvió a cambiar.</summary><p>En enero–junio de 2026 reportó <strong>16,286 millones de dólares</strong>, frente a 1,163 millones en el mismo semestre de 2025.</p><p class="large-aside">≈14 veces</p><p class="small-note">Comparamos seis meses con seis meses. Son ingresos reconocidos, no una extrapolación anual ni ganancias.</p></details>
+    <button class="source-link" data-source="2">Resultados · S-1, p.22 ↗</button>
+   </div></section>
+   <section class="story-section comparison-section" id="misma-etapa" data-scene="3" aria-labelledby="comparison-title"><div class="section-inner">
+    <p class="eyebrow reveal">UN MISMO PUNTO EN LA HISTORIA</p><h2 id="comparison-title" class="reveal">Todos tuvieron<br>un comienzo.</h2>
+    <p class="lead reveal">¿Qué habían conseguido otras empresas cuando estaban en una etapa parecida?</p>
+    <p class="reveal">Alineamos sus años calendario desde la constitución. El año de nacimiento cuenta como año 1.</p>
+    <div class="choice-row reveal" aria-label="Elegir etapa comparable"><button data-age="3" aria-pressed="false">Año 3</button><button data-age="4" aria-pressed="false">Año 4</button><button data-age="5" aria-pressed="true">Año 5</button></div>
+    <div class="comparison-ledger reveal" id="comparison-ledger" aria-live="polite"></div>
+    <p class="comparison-insight reveal" id="comparison-insight"></p>
+    <details class="story-detail reveal"><summary>¿Qué hace justa —y limitada— esta comparación?</summary><p>Todos son ingresos de años completos terminados en diciembre, expresados en millones de dólares nominales. No ajustamos por inflación: un dólar de 1998 y uno de 2025 no tienen el mismo poder adquisitivo.</p><p>La edad es aproximada: es el tercer, cuarto o quinto año calendario, no el mismo número exacto de meses de operación. Comercio, publicidad e IA tienen costos, márgenes y formas de reconocer ingresos distintos.</p><p>No es una clasificación de mejores empresas ni predice lo que ocurrirá después.</p></details>
+    <button class="source-link" data-source="3">Consultar cifras y criterio de comparación ↗</button>
+   </div></section>
+   <section class="story-section" id="valuacion" data-scene="4" aria-labelledby="valuation-title"><div class="section-inner">
+    <p class="eyebrow reveal">DOS NÚMEROS QUE NO SON LO MISMO</p><h2 id="valuation-title" class="reveal">Una cosa es vender.<br>Otra es valer.</h2>
+    <p class="lead reveal">Los ingresos cuentan lo que genera el negocio. La valuación cuenta cuánto valor se le atribuye.</p>
+    <p class="reveal">Esta gráfica coloca a varias empresas en un reloj que empieza al fundarse. Invita a mirar la velocidad con la que se les ha asignado valor.</p>
+    <figure class="inline-reference reveal"><img src="./assets/valuation-reference.png" width="1379" height="869" alt="Referencia de valuación por años desde fundación, compartida por el usuario, con marca SemiAnalysis."><figcaption>Referencia compartida · marca visible: SemiAnalysis</figcaption></figure>
+    <button class="text-action chart-open reveal">Explorar la gráfica original ↗</button>
+    <details class="story-detail reveal"><summary>¿Cómo leerla sin confundir las cifras?</summary><p>El eje horizontal muestra años desde la fundación y el vertical, valuación en USD. En sus etiquetas, $1T equivale a un billón de dólares en español; $1B equivale a mil millones.</p><p>Incluye empresas privadas y públicas: una valuación de ronda y una capitalización bursátil no son mediciones idénticas. Ninguna representa directamente ventas, efectivo disponible ni dinero aportado a la economía.</p><p class="small-note">Conservamos la imagen aportada. No se verificaron su fecha ni metodología original, y no convertimos sus puntos en datos exactos.</p></details>
+    <button class="source-link" data-source="4">Procedencia y límites de la referencia ↗</button>
+   </div></section>
+   <section class="story-section" id="infraestructura" data-scene="5" aria-labelledby="infrastructure-title"><div class="section-inner">
+    <p class="eyebrow reveal"><span>2026</span> · LO QUE NO SE VE</p><h2 id="infrastructure-title" class="reveal">Detrás de<br>cada respuesta.</h2>
+    <p class="lead reveal">La conversación aparece en una pantalla. Para sostenerla hace falta un mundo físico.</p>
+    <p class="reveal">Chips. Centros de datos. Electricidad. Personas investigando y operando el sistema.</p>
+    <div class="plain-stat reveal"><span class="large-number">8,945</span><span>millones de dólares de gasto en cómputo e infraestructura<br><small>Enero–junio de 2026</small></span></div>
+    <details class="story-detail reveal"><summary>¿Todo eso es el costo de responder chats?</summary><p>No. Incluye recursos para investigación, desarrollo de modelos y operación. Es gasto contable del semestre, no la cantidad de efectivo pagado ni compromisos para años futuros.</p></details>
+    <details class="story-detail reveal" id="loss-detail"><summary>Entonces, ¿ya ganaba dinero?</summary><p>En ese semestre, los ingresos fueron 16,286 millones y los gastos operativos, 16,979 millones: una <strong>pérdida operativa de 693 millones de dólares</strong>.</p><p>La pérdida neta fue mucho mayor e incluyó grandes ajustes contables. No debe leerse como dinero quemado. Ingresos, ganancias y caja cuentan cosas distintas.</p></details>
+    <button class="source-link" data-source="5">Gastos y resultados · S-1, p.22 ↗</button>
+   </div></section>
+   <section class="story-section" id="economia" data-scene="6" aria-labelledby="economy-title"><div class="section-inner">
+    <p class="eyebrow reveal">FUERA DE LA HABITACIÓN</p><h2 id="economy-title" class="reveal">La historia<br>también pasa afuera.</h2>
+    <p class="lead reveal">El efecto de una empresa de IA no termina en su cuenta de resultados.</p>
+    <div class="economy-choices reveal" role="group" aria-label="Explorar conexiones con la economía"><button data-economy="adoption" aria-pressed="true">Quienes la usan</button><button data-economy="infrastructure" aria-pressed="false">Quienes la sostienen</button><button data-economy="future" aria-pressed="false">Lo que puede cambiar</button></div>
+    <div class="economy-story reveal" aria-live="polite"><span class="evidence-label" id="economy-label">USOS DESCRITOS POR LA EMPRESA</span><h3 id="economy-heading">De una tarea a un proceso.</h3><p id="economy-copy">Según Anthropic, Claude puede ayudar a una persona, incorporarse a procesos de trabajo o formar parte de otros productos. Su prospecto identifica productividad y velocidad como fuentes de valor para sus clientes.</p><p class="small-note" id="economy-limit">Esto describe cómo se usa y qué valor propone. No demuestra por sí solo cuánto hizo crecer a la economía.</p></div>
+    <p class="quiet-line reveal">Una valuación enorme no equivale a un aumento del PIB.</p>
+    <button class="source-link" data-source="6">Usos, energía e incertidumbre · fuentes ↗</button>
+   </div></section>
+   <section class="story-section" id="ipo" data-scene="7" aria-labelledby="ipo-title"><div class="section-inner">
+    <p class="eyebrow reveal"><span>26 OCT 2026</span> · EL S-1</p><h2 id="ipo-title" class="reveal">Ahora, abrir<br>las cuentas.</h2>
+    <p class="lead reveal">Anthropic presenta un documento que permite asomarse al negocio antes de una oferta pública inicial.</p>
+    <p class="reveal">Un IPO abre la posibilidad de comprar acciones en una oferta al público. Comprar una acción significa adquirir una participación; no comprar una respuesta de Claude.</p>
+    <div class="money-flow reveal"><p class="micro-title">SIGUE EL DINERO DE UNA ACCIÓN</p><div class="choice-row"><button data-flow="primary" aria-pressed="true">Acción nueva</button><button data-flow="secondary" aria-pressed="false">Acción existente</button></div><div class="money-route" aria-live="polite"><span>Comprador</span><span class="money-arrow" aria-hidden="true">→</span><span id="money-recipient">Empresa</span></div><p id="money-explanation">Si la empresa emite la acción, recibe el dinero de esa venta. Aumenta el número de acciones y puede cambiar la participación proporcional de los dueños existentes.</p></div>
+    <details class="story-detail reveal"><summary>¿Qué seguía pendiente en este documento?</summary><p>El prospecto es preliminar. Deja en blanco el precio y la cantidad de acciones de la oferta. Solicita cotizar en Nasdaq con el símbolo ANT; no acredita que la cotización ya haya empezado.</p></details>
+    <button class="source-link" data-source="7">Oferta propuesta · prospecto preliminar ↗</button>
+   </div></section>
+   <section class="story-section finale" id="campana" data-scene="8" aria-labelledby="bell-title"><div class="section-inner">
+    <p class="eyebrow reveal">EL SIGUIENTE CAPÍTULO ES FUTURO</p><h2 id="bell-title" class="reveal">Y un día,<br>la campana.</h2>
+    <p class="lead reveal">La misma criatura que empezó junto a un escritorio llega hasta este escenario con toda una historia detrás.</p>
+    <p class="reveal">Hasta aquí llega lo documentado al 26 de octubre de 2026. El campanazo representa un posible debut: todavía no es un hecho ocurrido en esta historia.</p>
+    <div class="bell-actions reveal"><button id="ring-button" class="primary-action">Imaginar el campanazo <span aria-hidden="true">↗</span></button><button id="sound-button" class="plain-button" aria-pressed="false">Sonido: apagado</button></div>
+    <p id="bell-result" class="bell-result" aria-live="polite">Una representación simbólica del siguiente paso.</p>
+    <div class="closing-note reveal"><p>La campana abre otra etapa.</p><p>El negocio todavía tiene que sostenerse.<br>La tecnología todavía tiene que ser útil.<br>Sus efectos en el mundo siguen escribiéndose.</p></div>
+    <button class="source-link" data-source="8">Estado del IPO y fecha de corte ↗</button>
+    <a class="back-to-start reveal" href="#origen">Volver al comienzo ↑</a>
+   </div></section>
+  </div>
+ </main>
+ <footer class="site-footer"><p>Una historia independiente sobre Anthropic.<br>Ilustraciones simbólicas · datos al 26 de octubre de 2026.</p><div><button class="plain-button" id="all-sources-button">Fuentes y criterios</button><button class="plain-button" id="glossary-button">Palabras en sencillo</button></div></footer>
+ <dialog id="chapters-dialog" class="app-dialog" aria-labelledby="chapters-title"><div class="dialog-head"><h2 id="chapters-title">El recorrido.</h2><button class="dialog-close" aria-label="Cerrar capítulos">×</button></div><nav id="chapter-menu" aria-label="Capítulos de la historia"></nav></dialog>
+ <dialog id="sources-dialog" class="app-dialog source-dialog" aria-labelledby="sources-title"><div class="dialog-head"><h2 id="sources-title">Detrás del relato.</h2><button class="dialog-close" aria-label="Cerrar fuentes">×</button></div><p class="dialog-intro">Datos al 26 de octubre de 2026. Las cifras de ingresos, valuación, gastos y flujo de dinero se mantienen separadas.</p><div id="source-list"></div><section class="methodology"><h3>Cómo comparamos etapas</h3><p>El año de constitución es el año 1. Comparamos los años calendario 3, 4 y 5, con ingresos anuales nominales, sin ajustar por inflación. No son edades exactas ni una predicción.</p><p>Amazon: ventas netas de productos, no ganancia neta. Google: presentación bruta del S-1/A final. Anthropic: ingresos GAAP; en ciertos marketplaces reconoce ingresos brutos y costos por separado. Sus modelos de negocio y épocas son distintos.</p><a href="./assets/data-sources.json" download>Descargar datos y referencias (JSON) ↓</a></section></dialog>
+ <dialog id="chart-dialog" class="app-dialog chart-dialog" aria-labelledby="chart-title"><div class="dialog-head"><h2 id="chart-title">La gráfica compartida.</h2><button class="dialog-close" aria-label="Cerrar gráfica">×</button></div><p>Valuación (USD) frente a años desde la fundación. Esta imagen no muestra ingresos.</p><div class="chart-toolbar"><button id="chart-zoom" class="plain-button" aria-pressed="false">Ampliar al 150%</button><a href="./assets/valuation-reference.png" target="_blank" rel="noopener">Abrir original ↗</a></div><div class="chart-viewport"><img id="full-chart" src="./assets/valuation-reference.png" width="1379" height="869" alt="Gráfica completa de valuación por años de vida. Anthropic se resalta en naranja; el resto de trayectorias, en azul."></div><p class="small-note">Imagen proporcionada por el usuario. Marca visible: SemiAnalysis. Fecha y metodología originales no verificadas; no se extrajeron cifras exactas.</p></dialog>
+ <dialog id="glossary-dialog" class="app-dialog" aria-labelledby="glossary-title"><div class="dialog-head"><h2 id="glossary-title">En sencillo.</h2><button class="dialog-close" aria-label="Cerrar glosario">×</button></div><dl id="glossary-list"></dl></dialog>
+ <noscript><p class="noscript-note">Puedes leer la historia completa. Activa JavaScript para las animaciones y comparaciones interactivas.</p></noscript>
+</body>
+</html>
