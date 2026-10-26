@@ -1364,7 +1364,7 @@
     },
     "visual_verification": {
       "verified": true,
-      "image": "/Users/pabloparedeslombardo/Documents/ChatGPT/IPO Anthropic Game/tmp/pdfs/financial-summary.png",
+      "source": "Anthropic S-1, PDF page 33 (printed page 22)",
       "check": "Last column of PDF33, H1 2026; all five rows, total and loss verified visually."
     }
   },

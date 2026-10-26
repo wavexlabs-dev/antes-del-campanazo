@@ -2,6 +2,8 @@
 
 Relato interactivo por scroll sobre Anthropic, su crecimiento y su IPO propuesto. Datos con fecha de corte 26 de octubre de 2026. Sitio estático en `dist/`, sin servicios de terceros en tiempo de ejecución.
 
+[Abrir el sitio publicado](https://antes-del-campanazo.pabloparedes-mx.chatgpt.site/)
+
 ## Experiencia ampliada
 
 Catorce capítulos incluyen productos, adopción empresarial, expansión de cohortes, salud financiera, riesgos, litigios, gobierno, precio de acciones y posibles efectos económicos. Clientes y acciones usan composiciones amplias con el personaje integrado; infraestructura abre un recorrido a pantalla completa por los gastos reconocidos de cada dólar de ingreso en enero–junio de 2026.
