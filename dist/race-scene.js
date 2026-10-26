@@ -24,7 +24,8 @@ export function mountRaceScene({ root, gsap, ScrollTrigger, motion = true } = {}
   if (!root?.ownerDocument) throw new TypeError('mountRaceScene needs a root element');
   const doc = root.ownerDocument, win = doc.defaultView;
   const story = raceStory(), hasEngine = Boolean(gsap && ScrollTrigger);
-  let enabled = Boolean(motion), trigger = null, step = -1;
+  let enabled = Boolean(motion), trigger = null, animation = null, step = -1, distance = 0;
+  const playhead = { progress: 0 };
   root.classList.add('race-experience');
   root.innerHTML = `
     <div class="race-panel" role="region" aria-labelledby="race-title">
@@ -49,37 +50,68 @@ export function mountRaceScene({ root, gsap, ScrollTrigger, motion = true } = {}
       <p class="race-foot">Capitalización en bolsa el primer día que llegó a US$1 billón (10<sup>12</sup>), frente a la valuación post-money de la Serie H de Anthropic. Dólares nominales; años desde la fundación.</p>
     </div>`;
   const lanes = [...root.querySelectorAll('.race-lane')].map(el => ({ el, years: Number(el.dataset.years), anthropic: el.classList.contains('is-anthropic'), bar: el.querySelector('.race-bar'), runner: el.querySelector('.race-runner') }));
+  const panel = root.querySelector('.race-panel'), header = root.querySelector('.race-header');
   const title = root.querySelector('.race-title'), copy = root.querySelector('.race-copy');
 
   function render(progress) {
     const p = Math.max(0, Math.min(1, progress));
-    const cursor = Math.min(1, p / .6) * SPAN, ours = Math.max(0, Math.min(1, (p - .64) / .24)) * story.anthropicYears;
+    const cursor = Math.min(1, p / .58) * SPAN, ours = Math.max(0, Math.min(1, (p - .58) / .42)) * story.anthropicYears;
     for (const lane of lanes) {
       const shown = lane.anthropic ? ours : Math.min(cursor, lane.years);
       lane.bar.style.width = pct(shown);
       lane.el.classList.toggle('is-done', lane.anthropic ? ours >= story.anthropicYears - .01 : cursor >= lane.years);
       if (lane.runner) { lane.runner.style.left = pct(shown); lane.runner.classList.toggle('is-walking', enabled && ours > .02 && ours < story.anthropicYears - .02); }
     }
-    const next = p < .3 ? 0 : p < .64 ? 1 : 2;
+    const next = p < .3 ? 0 : p < .58 ? 1 : 2;
     if (next !== step) { step = next; title.textContent = story.steps[step].title; copy.textContent = story.steps[step].copy; root.dataset.raceStep = String(step); }
   }
-  function build() {
+  function measure() {
+    // Text changes must not move the track or change the sticky range mid-race.
+    const currentTitle = title.textContent, currentCopy = copy.textContent;
+    header.style.removeProperty('min-height');
+    let height = 0;
+    for (const state of story.steps) {
+      title.textContent = state.title;
+      copy.textContent = state.copy;
+      height = Math.max(height, Math.ceil(header.getBoundingClientRect().height));
+    }
+    title.textContent = currentTitle;
+    copy.textContent = currentCopy;
+    header.style.minHeight = `${height}px`;
+    distance = Math.round(Math.max(480, Math.min(800, win.innerHeight * .8)));
+    root.style.height = `${panel.offsetHeight + distance}px`;
+  }
+  function clear() {
     trigger?.kill(); trigger = null;
+    animation?.kill(); animation = null;
+    root.style.removeProperty('height');
+    header.style.removeProperty('min-height');
+  }
+  function build() {
+    clear();
     root.dataset.enhanced = String(enabled && hasEngine);
     if (!enabled || !hasEngine) { render(1); return; }
-    const panel = root.querySelector('.race-panel');
+    measure();
+    animation = gsap.fromTo(playhead, { progress: 0 }, {
+      progress: 1, duration: 1, ease: 'none', paused: true,
+      onUpdate: () => render(playhead.progress)
+    });
     trigger = ScrollTrigger.create({
       trigger: root,
+      animation,
       start: () => `top ${Math.round(parseFloat(win.getComputedStyle(panel).top) || 0)}px`,
-      end: () => `+=${Math.max(1, root.offsetHeight - panel.offsetHeight)}`,
+      end: () => `+=${distance}`,
+      scrub: .55,
       invalidateOnRefresh: true,
-      onUpdate: self => render(self.progress)
+      onRefreshInit: measure,
+      onRefresh: self => animation?.progress(self.progress)
     });
-    render(trigger.progress || 0);
+    animation.progress(trigger.progress || 0);
+    render(playhead.progress);
   }
   build();
   return {
     setMotion(value) { enabled = Boolean(value); build(); },
-    dispose() { trigger?.kill(); root.replaceChildren(); root.classList.remove('race-experience'); }
+    dispose() { clear(); root.replaceChildren(); root.classList.remove('race-experience'); delete root.dataset.enhanced; delete root.dataset.raceStep; }
   };
 }

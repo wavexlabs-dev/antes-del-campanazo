@@ -1,12 +1,12 @@
 /* The race to the first trillion: a full-width chapter led by scroll, in the story's line work. */
-.race-experience{position:relative;width:100%;min-height:200svh;pointer-events:auto;--race-name:118px}
-.race-panel{position:sticky;top:calc(var(--header,82px) + 14px);max-width:1080px;margin:0 auto;padding:22px clamp(18px,4vw,48px);display:grid;gap:22px;align-content:center;min-height:min(620px,calc(100svh - var(--header,82px) - 30px))}
+.race-experience{position:relative;width:100%;pointer-events:auto;--race-name:118px;--race-row:clamp(30px,5.3svh,46px)}
+.race-panel{position:sticky;top:calc(var(--header,82px) + 10px);max-width:1080px;margin:0 auto;padding:16px clamp(18px,4vw,48px);display:grid;gap:16px;align-content:start}
 .race-header{display:grid;gap:8px;max-width:760px}
 .race-kicker{font:400 10px/1.5 ui-monospace,monospace;letter-spacing:1.1px;color:var(--secondary);margin:0!important}
 .race-title{font:400 clamp(30px,3.6vw,48px)/1.05 StorySerif,Georgia,serif;letter-spacing:-1.4px;margin:0}
 .race-copy{font-size:14px;line-height:1.6;color:var(--secondary);margin:0!important;min-height:3.3em;max-width:660px}
 .race-lanes{list-style:none;margin:0;padding:0}
-.race-lane,.race-axis{display:grid;grid-template-columns:var(--race-name) minmax(0,1fr);align-items:center;gap:16px;height:46px;border-top:1px solid var(--line)}
+.race-lane,.race-axis{display:grid;grid-template-columns:var(--race-name) minmax(0,1fr);align-items:center;gap:16px;height:var(--race-row);border-top:1px solid var(--line)}
 .race-name{font:400 17px/1.2 StorySerif,Georgia,serif;color:var(--ink)}
 .race-lane.is-anthropic .race-name{color:var(--accent)}
 .race-track{position:relative;height:100%}
@@ -31,12 +31,24 @@
 .race-foot{font:400 10px/1.6 ui-monospace,monospace;color:var(--secondary);margin:0!important;max-width:760px}
 .race-sr-only{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important}
 .race-experience[data-enhanced=false]{min-height:0}.race-experience[data-enhanced=false] .race-panel{position:relative;top:auto;min-height:0}
+#valuacion .full-outro{padding:24px 0 0}
+#valuacion{padding-bottom:32px}
 @media(max-width:760px){
- .race-experience{--race-name:74px;min-height:190svh}
- .race-panel{top:calc(var(--header,88px) + 8px);padding:12px 20px;gap:14px;min-height:0}
+ .race-experience{--race-name:74px;--race-row:clamp(30px,4.5svh,40px)}
+ .race-panel{top:calc(var(--header,88px) + 8px);padding:10px 12px;gap:12px;min-height:0}
  .race-title{font-size:28px;letter-spacing:-.8px}.race-copy{font-size:13px;min-height:4.8em}
- .race-lane,.race-axis{height:40px;gap:10px}.race-name{font-size:14px}
+ .race-lane,.race-axis{gap:10px}.race-name{font-size:14px}.race-axis{height:26px}
  .race-runner{width:32px}.race-end{font-size:9.5px}.race-lane.is-anthropic .race-end{white-space:normal;width:150px;line-height:1.25;transform:translate(20px,-50%)}
  .race-foot{font-size:9px}
+}
+@media(max-height:760px) and (max-width:760px){
+ .race-panel{padding-top:8px;padding-bottom:8px;gap:10px}
+ .race-title{font-size:24px}.race-copy{font-size:12px;line-height:1.5}
+ .race-kicker{font-size:9px;line-height:1.4}.race-lane{height:30px}
+ .race-axis{height:24px}.race-foot{font-size:8.5px;line-height:1.5}
+}
+@media(max-height:680px) and (min-width:761px){
+ .race-panel{padding-top:10px;padding-bottom:10px;gap:10px}
+ .race-title{font-size:34px}.race-copy{font-size:13px;line-height:1.5}
 }
 @media(prefers-reduced-motion:reduce){.race-runner svg{animation:none!important}}
