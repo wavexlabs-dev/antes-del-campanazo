@@ -5,7 +5,7 @@
  <title>Antes del campanazo · La historia de Anthropic</title>
  <meta name="description" content="Recorre la historia de Anthropic, descubre cómo creció y entiende su propuesta de salida a bolsa. Una historia interactiva con fuentes y comparaciones.">
  <meta name="theme-color" content="#f5f2ea"><meta property="og:title" content="Antes del campanazo"><meta property="og:description" content="Una historia para entender Anthropic y su propuesta de IPO, a tu ritmo."><meta property="og:type" content="website"><meta property="og:url" content="https://antes-del-campanazo.pabloparedes-mx.chatgpt.site">
- <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css">
+ <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./expense-scene.css">
  <script src="./vendor/gsap.min.js" defer></script><script src="./vendor/ScrollTrigger.min.js" defer></script><script type="module" src="./app.js"></script>
 </head>
 <body>
@@ -17,40 +17,60 @@
  </header>
  <main id="story">
   <aside class="visual-rail" aria-label="Ilustración de la historia">
-   <div class="stage-heading"><span id="stage-number">01 / 09</span><span id="stage-caption">Una habitación. Todo por construir.</span></div>
+   <div class="stage-heading"><span id="stage-number">01 / 14</span><span id="stage-caption">Una habitación. Todo por construir.</span></div>
    <canvas id="story-canvas" role="img" aria-label="El personaje de Claude acompaña una historia ilustrada que comienza en un laboratorio"></canvas>
    <div id="valuation-stage" class="valuation-stage" hidden><button class="chart-open" aria-label="Ampliar gráfica de valuación por años desde la fundación"><img src="./assets/valuation-reference.png" width="1379" height="869" alt="Gráfica compartida: valuación en dólares frente a años desde la fundación de Anthropic y otras empresas. Marca visible SemiAnalysis."><span>Ampliar gráfica <span aria-hidden="true">↗</span></span></button></div>
    <div class="stage-groundnote" id="stage-note">Ilustración simbólica</div>
   </aside>
   <div class="story-content">
-   <section class="story-section hero" id="origen" data-scene="0" aria-labelledby="origin-title">
+   <section class="story-section hero" id="origen" aria-labelledby="origin-title" data-scene="0">
     <div class="section-inner">
-     <p class="eyebrow reveal">UNA HISTORIA SOBRE ANTHROPIC</p>
+     <p class="eyebrow reveal">UNA HISTORIA SOBRE ANTHROPIC · 14 MOMENTOS</p>
      <h1 id="origin-title" class="reveal">Antes del<br>campanazo<span>.</span></h1>
-     <p class="lead reveal">Antes de las cifras enormes, hubo una habitación, un equipo y una pregunta.</p>
+     <p class="lead reveal">Antes de las cifras enormes, hubo una habitación, un equipo y una pregunta: ¿cómo construir una IA potente y confiable?</p>
      <div class="origin-note reveal"><span class="year-mark">2021</span><p>Anthropic nace como un laboratorio de investigación. Su propósito declarado: desarrollar inteligencia artificial de forma responsable.</p></div>
      <p class="scroll-cue reveal"><span aria-hidden="true">↓</span> Baja. La historia empieza aquí.</p>
      <details class="story-detail reveal"><summary>¿Quiénes empezaron?</summary><p>Un equipo de investigadores de IA, con Dario y Daniela Amodei entre sus cofundadores. La empresa se constituyó en enero de 2021.</p><p class="small-note">La mascota nos acompaña como recurso narrativo; no significa que ya existiera en esa fecha.</p></details>
-     <button class="source-link" data-source="0">La fuente de este momento ↗</button>
+     <button class="source-link" data-source="origen">La fuente de este momento ↗</button>
     </div>
    </section>
-   <section class="story-section" id="claude" data-scene="1" aria-labelledby="claude-title"><div class="section-inner">
+   <section class="story-section" id="claude" aria-labelledby="claude-title" data-scene="1"><div class="section-inner">
     <p class="eyebrow reveal"><span>2023</span> · EL ENCUENTRO</p><h2 id="claude-title" class="reveal">Alguien al<br>otro lado.</h2>
     <p class="lead reveal">Claude llega al público. Lo que se investigaba dentro del laboratorio empieza a ser útil fuera de él.</p>
     <p class="reveal">El primer producto comercial de Anthropic se lanzó públicamente en el primer trimestre de 2023. Ahora había personas haciendo preguntas, resolviendo tareas y encontrando razones para volver.</p>
     <div class="handwritten-note reveal">Una conversación era también<br>el comienzo de un negocio.</div>
     <details class="story-detail reveal"><summary>¿Para qué se usa?</summary><p>Anthropic describe usos en programación, análisis financiero, creación de contenido, análisis legal y operaciones de atención a clientes. Es la descripción de la empresa en su prospecto, no una medición independiente de los resultados de cada uso.</p></details>
-    <button class="source-link" data-source="1">Lanzamiento y usos · S-1, pp.61 y 139 ↗</button>
+    <button class="source-link" data-source="claude">Lanzamiento y usos · S-1, pp.61 y 139 ↗</button>
    </div></section>
-   <section class="story-section" id="crecimiento" data-scene="2" aria-labelledby="growth-title"><div class="section-inner">
+   <section class="story-section" id="logros" aria-labelledby="products-title" data-scene="2"><div class="section-inner">
+    <p class="eyebrow reveal">2023–2026 · APRENDER A HACER</p><h2 id="products-title" class="reveal">Ya no sólo<br>respondía.</h2>
+    <p class="lead reveal">La historia de Claude también es la de las herramientas que fue aprendiendo a usar.</p>
+    <div class="product-trail reveal" role="group" aria-label="Explorar evolución de productos"><button data-product="platform" aria-pressed="true"><small>2023</small>Claude y plataforma</button><button data-product="code" aria-pressed="false"><small>2025</small>Claude Code</button><button data-product="cowork" aria-pressed="false"><small>2026</small>Claude Cowork</button></div>
+    <div class="explore-story reveal" aria-live="polite"><span id="product-date" class="evidence-label"></span><h3 id="product-title"></h3><p id="product-copy"></p><p id="product-meaning" class="small-note"></p><span id="product-source" class="micro-source"></span></div>
+    <div class="milestone-strip reveal"><strong>250</strong><p>versiones de modelos, funciones de plataforma y aplicaciones lanzadas en enero–septiembre de 2026, según Anthropic.</p></div>
+    <details class="story-detail reveal"><summary>¿Y dentro de la propia empresa?</summary><p>Anthropic afirma que Claude escribió más del 90% de las contribuciones a su base de código en septiembre de 2026. Es un indicador interno: no significa que hiciera 90% de todo el trabajo, ni mide la calidad del software.</p><p>También reporta ingresos de los últimos doce meses por empleado de 1.4 millones a más de 6.6 millones de dólares entre septiembre de 2025 y septiembre de 2026. No es el sueldo ni la utilidad que genera cada persona.</p></details>
+    <button class="source-link" data-source="logros">Productos y métricas internas · S-1, pp.8, 136 y 142 ↗</button>
+   </div></section>
+   <section class="story-section wide-chapter" id="clientes" aria-labelledby="customers-title" data-scene="3"><div class="section-inner">
+    <p class="eyebrow reveal">2026 · LAS PUERTAS SE ABREN</p><h2 id="customers-title" class="reveal">De una persona<br>a toda una empresa.</h2>
+    <p class="lead reveal">El crecimiento no sólo vino de llegar a más clientes. También de entrar más profundo en su trabajo.</p>
+    <div class="stage-dock" aria-label="Escena de adopción"></div><p class="reveal">Elige cuánto aportó cada cliente a los ingresos de Anthropic durante los últimos doce meses:</p>
+    <div class="choice-row reveal" role="group" aria-label="Umbral de ingresos por cliente"><button data-tier="100k" aria-pressed="true">≥ US$100 mil</button><button data-tier="1m" aria-pressed="false">≥ US$1 millón</button><button data-tier="10m" aria-pressed="false">≥ US$10 millones</button></div>
+    <div class="customer-window reveal" aria-live="polite"><strong id="customer-count">Más de 11,900</strong><p>clientes con <span id="customer-threshold">100 mil dólares o más</span></p><p id="customer-before"></p><span class="micro-source">Al 30 de septiembre de 2026 · últimos doce meses · según Anthropic</span></div>
+    <p class="small-note reveal">Los tramos están contenidos unos dentro de otros: no se suman. Se trata de clientes de la empresa, no de personas que usan el chat.</p>
+    <div class="milestone-strip reveal"><strong>&gt;50%</strong><p>de Fortune 500 superaba el umbral de US$100 mil en los últimos doce meses, según el S-1.</p></div>
+    <details class="story-detail reveal"><summary>La cifra de 900%: ¿cómo es posible?</summary><p>La retención neta de ingresos declarada fue aproximadamente 900% a septiembre de 2026. Compara los ingresos trimestrales de la misma cohorte elegible con el trimestre de un año antes: aproximadamente nueve veces.</p><p>No significa retener a 900% de las personas, ni que cada cliente gastara nueve veces más. Incorpora expansiones, contracciones y bajas, y excluye suscriptores Pro y Max.</p></details>
+    <button class="source-link" data-source="clientes">Adopción y definición de métricas · S-1, pp.2–3, 134–135 y 142 ↗</button>
+   </div></section>
+   <section class="story-section" id="crecimiento" aria-labelledby="growth-title" data-scene="4"><div class="section-inner">
     <p class="eyebrow reveal"><span>2023–2025</span> · EL CRECIMIENTO</p><h2 id="growth-title" class="reveal">La habitación<br>se queda pequeña.</h2>
     <p class="lead reveal">De 41 millones de dólares de ingresos en 2023 a 4,585 millones en 2025.</p>
     <div class="revenue-receipt reveal" aria-live="polite"><span class="receipt-top">ANTHROPIC · INGRESOS DE <span id="revenue-year">2025</span></span><span class="receipt-number" id="revenue-value">4,585</span><span class="receipt-unit">millones de dólares</span><span class="receipt-bottom">Doce meses completos · USD</span></div>
     <div class="choice-row reveal" aria-label="Elegir año de ingresos"><button data-revenue-year="2023" aria-pressed="false">2023</button><button data-revenue-year="2024" aria-pressed="false">2024</button><button data-revenue-year="2025" aria-pressed="true">2025</button></div>
     <details class="story-detail reveal" id="semester-detail"><summary>Y en 2026, el ritmo volvió a cambiar.</summary><p>En enero–junio de 2026 reportó <strong>16,286 millones de dólares</strong>, frente a 1,163 millones en el mismo semestre de 2025.</p><p class="large-aside">≈14 veces</p><p class="small-note">Comparamos seis meses con seis meses. Son ingresos reconocidos, no una extrapolación anual ni ganancias.</p></details>
-    <button class="source-link" data-source="2">Resultados · S-1, p.22 ↗</button>
+    <button class="source-link" data-source="crecimiento">Resultados · S-1, p.22 ↗</button>
    </div></section>
-   <section class="story-section comparison-section" id="misma-etapa" data-scene="3" aria-labelledby="comparison-title"><div class="section-inner">
+   <section class="story-section comparison-section" id="misma-etapa" aria-labelledby="comparison-title" data-scene="5"><div class="section-inner">
     <p class="eyebrow reveal">UN MISMO PUNTO EN LA HISTORIA</p><h2 id="comparison-title" class="reveal">Todos tuvieron<br>un comienzo.</h2>
     <p class="lead reveal">¿Qué habían conseguido otras empresas cuando estaban en una etapa parecida?</p>
     <p class="reveal">Alineamos sus años calendario desde la constitución. El año de nacimiento cuenta como año 1.</p>
@@ -58,50 +78,76 @@
     <div class="comparison-ledger reveal" id="comparison-ledger" aria-live="polite"></div>
     <p class="comparison-insight reveal" id="comparison-insight"></p>
     <details class="story-detail reveal"><summary>¿Qué hace justa —y limitada— esta comparación?</summary><p>Todos son ingresos de años completos terminados en diciembre, expresados en millones de dólares nominales. No ajustamos por inflación: un dólar de 1998 y uno de 2025 no tienen el mismo poder adquisitivo.</p><p>La edad es aproximada: es el tercer, cuarto o quinto año calendario, no el mismo número exacto de meses de operación. Comercio, publicidad e IA tienen costos, márgenes y formas de reconocer ingresos distintos.</p><p>No es una clasificación de mejores empresas ni predice lo que ocurrirá después.</p></details>
-    <button class="source-link" data-source="3">Consultar cifras y criterio de comparación ↗</button>
+    <button class="source-link" data-source="misma-etapa">Consultar cifras y criterio de comparación ↗</button>
    </div></section>
-   <section class="story-section" id="valuacion" data-scene="4" aria-labelledby="valuation-title"><div class="section-inner">
+   <section class="story-section" id="valuacion" aria-labelledby="valuation-title" data-scene="6"><div class="section-inner">
     <p class="eyebrow reveal">DOS NÚMEROS QUE NO SON LO MISMO</p><h2 id="valuation-title" class="reveal">Una cosa es vender.<br>Otra es valer.</h2>
     <p class="lead reveal">Los ingresos cuentan lo que genera el negocio. La valuación cuenta cuánto valor se le atribuye.</p>
     <p class="reveal">Esta gráfica coloca a varias empresas en un reloj que empieza al fundarse. Invita a mirar la velocidad con la que se les ha asignado valor.</p>
     <figure class="inline-reference reveal"><img src="./assets/valuation-reference.png" width="1379" height="869" alt="Referencia de valuación por años desde fundación, compartida por el usuario, con marca SemiAnalysis."><figcaption>Referencia compartida · marca visible: SemiAnalysis</figcaption></figure>
     <button class="text-action chart-open reveal">Explorar la gráfica original ↗</button>
     <details class="story-detail reveal"><summary>¿Cómo leerla sin confundir las cifras?</summary><p>El eje horizontal muestra años desde la fundación y el vertical, valuación en USD. En sus etiquetas, $1T equivale a un billón de dólares en español; $1B equivale a mil millones.</p><p>Incluye empresas privadas y públicas: una valuación de ronda y una capitalización bursátil no son mediciones idénticas. Ninguna representa directamente ventas, efectivo disponible ni dinero aportado a la economía.</p><p class="small-note">Conservamos la imagen aportada. No se verificaron su fecha ni metodología original, y no convertimos sus puntos en datos exactos.</p></details>
-    <button class="source-link" data-source="4">Procedencia y límites de la referencia ↗</button>
+    <button class="source-link" data-source="valuacion">Procedencia y límites de la referencia ↗</button>
    </div></section>
-   <section class="story-section" id="infraestructura" data-scene="5" aria-labelledby="infrastructure-title"><div class="section-inner">
-    <p class="eyebrow reveal"><span>2026</span> · LO QUE NO SE VE</p><h2 id="infrastructure-title" class="reveal">Detrás de<br>cada respuesta.</h2>
-    <p class="lead reveal">La conversación aparece en una pantalla. Para sostenerla hace falta un mundo físico.</p>
-    <p class="reveal">Chips. Centros de datos. Electricidad. Personas investigando y operando el sistema.</p>
-    <div class="plain-stat reveal"><span class="large-number">8,945</span><span>millones de dólares de gasto en cómputo e infraestructura<br><small>Enero–junio de 2026</small></span></div>
-    <details class="story-detail reveal"><summary>¿Todo eso es el costo de responder chats?</summary><p>No. Incluye recursos para investigación, desarrollo de modelos y operación. Es gasto contable del semestre, no la cantidad de efectivo pagado ni compromisos para años futuros.</p></details>
-    <details class="story-detail reveal" id="loss-detail"><summary>Entonces, ¿ya ganaba dinero?</summary><p>En ese semestre, los ingresos fueron 16,286 millones y los gastos operativos, 16,979 millones: una <strong>pérdida operativa de 693 millones de dólares</strong>.</p><p>La pérdida neta fue mucho mayor e incluyó grandes ajustes contables. No debe leerse como dinero quemado. Ingresos, ganancias y caja cuentan cosas distintas.</p></details>
-    <button class="source-link" data-source="5">Gastos y resultados · S-1, p.22 ↗</button>
+   <section class="story-section full-scene" id="infraestructura" aria-labelledby="infrastructure-title" data-scene="7"><div class="section-inner">
+    <div class="full-intro"><p class="eyebrow reveal">2026 · LO QUE HAY DETRÁS DE CADA RESPUESTA</p><h2 id="infrastructure-title" class="reveal">Sigamos un dólar.</h2><p class="lead reveal">Por cada dólar de ingresos, Anthropic reconoció aproximadamente US$1.043 de gastos operativos en enero–junio de 2026.</p><p class="reveal">Baja para acompañar al personaje por cada parte de la cuenta.</p></div>
+    <div id="expense-experience"></div>
+    <div class="full-outro"><p class="quiet-line reveal">La conversación parece digital.<br>El negocio necesita infraestructura, personas y mucho más.</p><p class="reveal">La empresa describe una arquitectura con AWS Trainium, Google TPUs, NVIDIA GPUs y AMD GPUs. El cómputo sostiene investigación, desarrollo de modelos, operación y uso interno.</p><p class="reveal">En abril–junio de 2026, los ingresos crecieron 1,368% frente al mismo trimestre anterior; el gasto de cómputo e infraestructura creció 300%. El gasto seguía subiendo, pero las ventas crecieron más rápido.</p><button class="source-link" data-source="infraestructura">Distribución de gastos · S-1, p.22; cómputo, pp.135–136 ↗</button></div>
    </div></section>
-   <section class="story-section" id="economia" data-scene="6" aria-labelledby="economy-title"><div class="section-inner">
+   <section class="story-section" id="cuentas" aria-labelledby="accounts-title" data-scene="8"><div class="section-inner">
+    <p class="eyebrow reveal">2026 · SOSTENER SU PROPIO PESO</p><h2 id="accounts-title" class="reveal">Vender más.<br>¿Y ganar dinero?</h2>
+    <p class="lead reveal">Aquí la historia se vuelve menos obvia. El negocio, la contabilidad y la caja no avanzan al mismo ritmo.</p>
+    <div class="choice-row reveal" role="group" aria-label="Elegir lectura financiera"><button data-lens="operations" aria-pressed="true">La operación</button><button data-lens="net" aria-pressed="false">Resultado neto</button><button data-lens="cash" aria-pressed="false">La caja</button></div>
+    <div class="financial-window reveal" aria-live="polite"><span id="finance-label" class="evidence-label"></span><strong id="finance-value"></strong><span id="finance-unit"></span><h3 id="finance-title"></h3><p id="finance-copy"></p><p id="finance-limit" class="small-note"></p><span id="finance-source" class="micro-source"></span></div>
+    <p class="quiet-line reveal">La pregunta ya no es sólo cuánto crece.<br>También, qué necesita para sostenerse.</p>
+    <button class="source-link" data-source="cuentas">Resultados trimestrales, capital y caja ↗</button>
+   </div></section>
+   <section class="story-section" id="riesgos" aria-labelledby="risk-heading" data-scene="9"><div class="section-inner">
+    <p class="eyebrow reveal">LAS TENSIONES DEL CRECIMIENTO</p><h2 id="risk-heading" class="reveal">El camino<br>también se estrecha.</h2>
+    <p class="lead reveal">La velocidad impresiona. El prospecto también cuenta qué podría frenar el viaje.</p>
+    <div class="risk-choices reveal" role="group" aria-label="Explorar riesgos del negocio"><button data-risk="compute" aria-pressed="true">01 <span>Capacidad y compromisos</span> ↗</button><button data-risk="competition" aria-pressed="false">02 <span>Clientes y competencia</span> ↗</button><button data-risk="trust" aria-pressed="false">03 <span>Confianza y litigios</span> ↗</button><button data-risk="control" aria-pressed="false">04 <span>Quién tiene el mando</span> ↗</button></div>
+    <div class="explore-story reveal" aria-live="polite"><span class="evidence-label" id="risk-label"></span><h3 id="risk-title"></h3><p id="risk-fact"></p><p id="risk-mechanism"></p><p id="risk-watch" class="small-note"></p><span id="risk-source" class="micro-source"></span></div>
+    <button class="source-link" data-source="riesgos">Riesgos, obligaciones y litigios · fuentes ↗</button>
+   </div></section>
+   <section class="story-section" id="economia" aria-labelledby="economy-title" data-scene="10"><div class="section-inner">
     <p class="eyebrow reveal">FUERA DE LA HABITACIÓN</p><h2 id="economy-title" class="reveal">La historia<br>también pasa afuera.</h2>
     <p class="lead reveal">El efecto de una empresa de IA no termina en su cuenta de resultados.</p>
     <div class="economy-choices reveal" role="group" aria-label="Explorar conexiones con la economía"><button data-economy="adoption" aria-pressed="true">Quienes la usan</button><button data-economy="infrastructure" aria-pressed="false">Quienes la sostienen</button><button data-economy="future" aria-pressed="false">Lo que puede cambiar</button></div>
-    <div class="economy-story reveal" aria-live="polite"><span class="evidence-label" id="economy-label">USOS DESCRITOS POR LA EMPRESA</span><h3 id="economy-heading">De una tarea a un proceso.</h3><p id="economy-copy">Según Anthropic, Claude puede ayudar a una persona, incorporarse a procesos de trabajo o formar parte de otros productos. Su prospecto identifica productividad y velocidad como fuentes de valor para sus clientes.</p><p class="small-note" id="economy-limit">Esto describe cómo se usa y qué valor propone. No demuestra por sí solo cuánto hizo crecer a la economía.</p></div>
+    <div class="economy-story reveal" aria-live="polite"><span class="evidence-label" id="economy-label"></span><h3 id="economy-heading"></h3><p id="economy-copy"></p><div class="impact-pair"><div><span>QUIÉN PODRÍA GANAR</span><p id="economy-benefit"></p></div><div><span>QUÉ PUEDE LIMITARLO</span><p id="economy-friction"></p></div></div><p id="economy-evidence" class="small-note"></p><a id="economy-source" class="micro-source" target="_blank" rel="noopener"></a></div>
+    <div class="mini-lab reveal"><span class="evidence-label">EXPERIMENTO HIPOTÉTICO · NO UNA PREDICCIÓN</span><h3>¿Cuánto tiempo queda de verdad?</h3><p>Imagina diez tareas de 20 minutos. La IA acelera una parte; revisar el resultado también lleva tiempo.</p><label for="time-saving">Reducción del tiempo de ejecución <output id="time-saving-value">40%</output></label><input type="range" id="time-saving" min="0" max="80" step="10" value="40"><label for="time-review">Revisión por tarea <output id="time-review-value">5 min</output></label><input type="range" id="time-review" min="0" max="20" step="1" value="5"><div class="lab-result" aria-live="polite"><strong id="time-result">30 min</strong><span id="time-description">disponibles después de revisar</span></div><p class="small-note">Supone la misma calidad final. No incluye costo de herramientas, aprendizaje ni integración. Ese tiempo podría reinvertirse; no es una cifra de empleos o PIB.</p></div>
     <p class="quiet-line reveal">Una valuación enorme no equivale a un aumento del PIB.</p>
-    <button class="source-link" data-source="6">Usos, energía e incertidumbre · fuentes ↗</button>
+    <button class="source-link" data-source="economia">Usos, energía e incertidumbre · fuentes ↗</button>
    </div></section>
-   <section class="story-section" id="ipo" data-scene="7" aria-labelledby="ipo-title"><div class="section-inner">
+   <section class="story-section" id="ipo" aria-labelledby="ipo-title" data-scene="11"><div class="section-inner">
     <p class="eyebrow reveal"><span>26 OCT 2026</span> · EL S-1</p><h2 id="ipo-title" class="reveal">Ahora, abrir<br>las cuentas.</h2>
     <p class="lead reveal">Anthropic presenta un documento que permite asomarse al negocio antes de una oferta pública inicial.</p>
     <p class="reveal">Un IPO abre la posibilidad de comprar acciones en una oferta al público. Comprar una acción significa adquirir una participación; no comprar una respuesta de Claude.</p>
     <div class="money-flow reveal"><p class="micro-title">SIGUE EL DINERO DE UNA ACCIÓN</p><div class="choice-row"><button data-flow="primary" aria-pressed="true">Acción nueva</button><button data-flow="secondary" aria-pressed="false">Acción existente</button></div><div class="money-route" aria-live="polite"><span>Comprador</span><span class="money-arrow" aria-hidden="true">→</span><span id="money-recipient">Empresa</span></div><p id="money-explanation">Si la empresa emite la acción, recibe el dinero de esa venta. Aumenta el número de acciones y puede cambiar la participación proporcional de los dueños existentes.</p></div>
+    <div class="use-of-funds reveal"><h3>¿Para qué buscar más capital?</h3><p>El uso previsto incluye operación, cómputo e infraestructura, talento, posibles adquisiciones y obligaciones fiscales relacionadas con acciones de empleados. El documento no fija aún cuánto iría a cada destino.</p><span class="micro-source">S-1, p.124 · PDF135 · usos previstos, no ejecutados</span></div>
+    <div class="governance reveal"><h3>Participar no es lo mismo que decidir.</h3><dl><div><dt>Clase A</dt><dd>Derechos económicos y un voto por acción.</dd></div><div><dt>Clase N</dt><dd>Derechos económicos equivalentes; normalmente sin voto.</dd></div><div><dt>Founder LLC · clase F</dt><dd>50.1% del voto general, sin derechos económicos. No equivale a 50.1% de propiedad.</dd></div><div><dt>Long-Term Benefit Trust</dt><dd>Elige la mayoría del consejo mediante la clase T. La clase F no elige esos directores.</dd></div></dl><p class="small-note">Estructura propuesta tras el IPO. Protege la misión de beneficio público y limita la influencia de accionistas comunes. S-1, portada y p.19.</p></div>
+    <details class="story-detail reveal"><summary>¿Qué significa el fondo de beneficio público?</summary><p>El S-1 reporta una aportación de acciones clase N al Anthropic Public Benefit Fund equivalente a 5% de las acciones totalmente diluidas al 30 de junio de 2026, bajo supuestos de conversión específicos.</p><p>Es una aportación de acciones a una subsidiaria: no 5% de las ventas, ni efectivo ya distribuido a beneficiarios externos. Tampoco demuestra un impacto social medido. S-1, p.12.</p></details>
     <details class="story-detail reveal"><summary>¿Qué seguía pendiente en este documento?</summary><p>El prospecto es preliminar. Deja en blanco el precio y la cantidad de acciones de la oferta. Solicita cotizar en Nasdaq con el símbolo ANT; no acredita que la cotización ya haya empezado.</p></details>
-    <button class="source-link" data-source="7">Oferta propuesta · prospecto preliminar ↗</button>
+    <button class="source-link" data-source="ipo">Oferta propuesta · prospecto preliminar ↗</button>
    </div></section>
-   <section class="story-section finale" id="campana" data-scene="8" aria-labelledby="bell-title"><div class="section-inner">
+   <section class="story-section wide-chapter" id="acciones" aria-labelledby="shares-title" data-scene="12"><div class="section-inner">
+    <p class="eyebrow reveal">EL PRECIO Y LAS PIEZAS</p><h2 id="shares-title" class="reveal">¿Cuánto vale<br>una acción?</h2>
+    <p class="lead reveal">El prospecto todavía no fija el precio del IPO de Anthropic.</p>
+    <dl class="ipo-status reveal"><div><dt>Precio o rango de oferta</dt><dd>Pendiente</dd></div><div><dt>Acciones ofrecidas</dt><dd>Pendiente</dd></div><div><dt>Valuación implícita del IPO</dt><dd>No calculable aún</dd></div><div><dt>Símbolo solicitado</dt><dd>ANT · Nasdaq</dd></div></dl>
+    <p class="reveal">Para entender qué faltaba, probemos con una empresa imaginaria. Su precio por acción no es la valuación de toda la empresa.</p>
+    <div class="share-workbench"><div class="stage-dock" aria-label="Escena de acciones"></div><div class="mini-lab share-lab reveal"><span class="evidence-label">EMPRESA IMAGINARIA · NO ES ANTHROPIC</span><h3>Una pieza y todo el conjunto.</h3><p>Empieza con 10 millones de acciones. Todas tienen los mismos derechos económicos.</p><label for="share-price">Precio por acción <output id="share-price-value">US$25</output></label><input id="share-price" type="range" min="5" max="100" step="5" value="25"><label for="share-new">Acciones nuevas emitidas <output id="share-new-value">2 millones</output></label><input id="share-new" type="range" min="0" max="10" step="1" value="2"><div class="share-math" aria-live="polite"><div><span>Valor total después de la emisión</span><strong id="share-market">US$300 millones</strong><small id="share-equation">US$25 × 12 millones de acciones</small></div><div><span>Dinero nuevo para la empresa</span><strong id="share-raised">US$50 millones</strong></div><div><span>Quien tenía 1% conserva</span><strong id="share-ownership">0.83%</strong></div></div><p class="small-note">Precio constante antes y después; sin comisiones ni gastos. Mantienes tus acciones, pero hay más piezas en total. No incluye clases especiales ni deuda.</p></div></div>
+    <details class="story-detail reveal"><summary>¿Y si una acción se parte en diez?</summary><p>Anthropic reporta un split de 10 por 1 de sus clases A y N el 17 de septiembre de 2026. Sus cifras por acción ya incorporan ese ajuste.</p><div class="split-example"><span>Ejemplo imaginario</span><p>1 acción de US$100 <span aria-hidden="true">→</span> 10 de US$10</p><strong>El total sigue siendo US$100.</strong></div><p>Partir las piezas no crea valor por sí mismo. S-1, p.21.</p></details>
+    <p class="quiet-line reveal">Una acción de US$10 no es necesariamente “más barata” que una de US$100. Falta saber cuántas existen y qué negocio representan.</p>
+    <details class="story-detail reveal"><summary>¿Habría dividendos? ¿Qué más falta mirar?</summary><p>Anthropic dice que nunca ha pagado dividendos en efectivo y que no espera hacerlo en el futuro previsible; pretende reinvertir los recursos. La ganancia futura de quien compre no está garantizada.</p><p>Para evaluar la oferta todavía harían falta precio, estructura final de acciones y dilución. La dilución contable del prospecto compara precio con valor tangible neto por acción; es distinta de la reducción del porcentaje de propiedad del ejemplo. S-1, pp.125 y 129–131.</p></details>
+    <button class="source-link" data-source="acciones">Términos pendientes, capitalización y dilución · S-1 ↗</button>
+   </div></section>
+   <section class="story-section finale" id="campana" aria-labelledby="bell-title" data-scene="13"><div class="section-inner">
     <p class="eyebrow reveal">EL SIGUIENTE CAPÍTULO ES FUTURO</p><h2 id="bell-title" class="reveal">Y un día,<br>la campana.</h2>
     <p class="lead reveal">La misma criatura que empezó junto a un escritorio llega hasta este escenario con toda una historia detrás.</p>
     <p class="reveal">Hasta aquí llega lo documentado al 26 de octubre de 2026. El campanazo representa un posible debut: todavía no es un hecho ocurrido en esta historia.</p>
     <div class="bell-actions reveal"><button id="ring-button" class="primary-action">Imaginar el campanazo <span aria-hidden="true">↗</span></button><button id="sound-button" class="plain-button" aria-pressed="false">Sonido: apagado</button></div>
     <p id="bell-result" class="bell-result" aria-live="polite">Una representación simbólica del siguiente paso.</p>
     <div class="closing-note reveal"><p>La campana abre otra etapa.</p><p>El negocio todavía tiene que sostenerse.<br>La tecnología todavía tiene que ser útil.<br>Sus efectos en el mundo siguen escribiéndose.</p></div>
-    <button class="source-link" data-source="8">Estado del IPO y fecha de corte ↗</button>
+    <button class="source-link" data-source="campana">Estado del IPO y fecha de corte ↗</button>
     <a class="back-to-start reveal" href="#origen">Volver al comienzo ↑</a>
    </div></section>
   </div>

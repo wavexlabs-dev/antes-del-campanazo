@@ -305,5 +305,1084 @@
       "recommended_caption_es": "Referencia compartida por el usuario. Marca visible: SemiAnalysis. Fecha y metodología originales no verificadas. La gráfica muestra valuaciones, no ingresos.",
       "handling": "Keep the supplied image as a separate visual reference. Do not infer exact datapoints or treat private-company valuations and public market capitalization as a standardized revenue comparison."
     }
-  }
+  },
+  "business_enrichment": {
+    "scope": "Local PDF/text only. No external comparables or independent validation of issuer claims.",
+    "filing_date": "2026-10-26",
+    "units_rule": "In Spanish use millones or mil millones de dólares; do not mistranslate English billion as Spanish billón.",
+    "facts": [
+      {
+        "id": "product_milestones",
+        "title_es": "De conversar a hacer trabajo",
+        "explanation_es": "El documento fecha la vista previa de Claude Code en febrero de 2025 y la de Claude Cowork en enero de 2026. En septiembre de 2026 comenzaron a integrar Cowork y Claude.ai.",
+        "evidence_type": "Company-reported product history",
+        "sources": [
+          {
+            "pdf_page": 19,
+            "printed_page": "8",
+            "section": "Claude Code / Claude Cowork"
+          }
+        ],
+        "brief_quote": "its research preview release in February 2025",
+        "cautions_es": "Son vistas previas, no necesariamente lanzamientos generales. La afirmación de que Cowork superó la adopción de Code a la misma edad no incluye aquí cifras comparables de usuarios.",
+        "data": {
+          "claude_code_research_preview": "2025-02",
+          "claude_cowork_research_preview": "2026-01",
+          "cowork_claude_ai_merger_started": "2026-09"
+        }
+      },
+      {
+        "id": "release_velocity",
+        "title_es": "Una plataforma que cambia cada semana",
+        "explanation_es": "Anthropic afirma haber lanzado un total de 250 versiones de modelos, funciones de plataforma y aplicaciones entre enero y septiembre de 2026.",
+        "evidence_type": "Company-reported operating metric; not independently verified",
+        "sources": [
+          {
+            "pdf_page": 153,
+            "printed_page": "142",
+            "section": "Factors Affecting Our Performance"
+          }
+        ],
+        "brief_quote": "we launched an aggregate of 250 new model versions, platform features, and applications",
+        "cautions_es": "No llamarlas 250 modelos ni 250 productos distintos. La categoría suma tres tipos de lanzamiento.",
+        "data": {
+          "count": 250,
+          "period": "nine months ended 2026-09-30"
+        }
+      },
+      {
+        "id": "customer_base_growth",
+        "title_es": "De cientos de clientes grandes a miles",
+        "explanation_es": "Los clientes que aportaron al menos 100 mil dólares de ingresos en los doce meses previos pasaron de más de 950 a más de 11,900 entre septiembre de 2025 y septiembre de 2026.",
+        "evidence_type": "Company-reported operating metric; internal customer aggregation; not independently verified",
+        "sources": [
+          {
+            "pdf_page": 145,
+            "printed_page": "134",
+            "section": "Customer Diffusion"
+          },
+          {
+            "pdf_page": 13,
+            "printed_page": "2",
+            "section": "Definitions"
+          },
+          {
+            "pdf_page": 78,
+            "printed_page": "67",
+            "section": "Operating metric limitations"
+          }
+        ],
+        "brief_quote": "up from more than 950 as of September 30, 2025",
+        "cautions_es": "TTM significa últimos doce meses. Mantener los calificadores más de; no derivar una razón exacta de dos umbrales. Los clientes se agrupan como organizaciones según registros internos.",
+        "data": {
+          "threshold_usd_ttm": 100000,
+          "2025-09-30": {
+            "more_than": 950
+          },
+          "2026-09-30": {
+            "more_than": 11900
+          }
+        }
+      },
+      {
+        "id": "customer_depth",
+        "title_es": "Algunas relaciones ya mueven millones",
+        "explanation_es": "Al 30 de septiembre de 2026, más de 1,900 clientes habían aportado al menos un millón de dólares de ingresos en los doce meses previos; aproximadamente 250, al menos diez millones.",
+        "evidence_type": "Company-reported operating metric; not independently verified",
+        "sources": [
+          {
+            "pdf_page": 145,
+            "printed_page": "134",
+            "section": "Customer Diffusion"
+          },
+          {
+            "pdf_page": 13,
+            "printed_page": "2",
+            "section": "Definitions"
+          }
+        ],
+        "brief_quote": "approximately 250 customers with $10 million or more of revenue on a TTM basis",
+        "cautions_es": "Los tramos están anidados: no sumar 11,900 + 1,900 + 250. No son importes de contrato futuro ni patrimonio de los clientes.",
+        "data": {
+          "as_of": "2026-09-30",
+          "at_least_1m_usd_ttm": {
+            "more_than": 1900
+          },
+          "at_least_10m_usd_ttm": {
+            "approximately": 250
+          }
+        }
+      },
+      {
+        "id": "large_company_adoption",
+        "title_es": "Ya llegó a muchas de las grandes empresas",
+        "explanation_es": "Más del 50% de Fortune 500 y más del 30% de Global 2000 eran clientes que aportaban al menos 100 mil dólares en los últimos doce meses, al 30 de septiembre de 2026.",
+        "evidence_type": "Company-reported customer adoption metric; not independently verified",
+        "sources": [
+          {
+            "pdf_page": 153,
+            "printed_page": "142",
+            "section": "Factors Affecting Our Performance"
+          }
+        ],
+        "brief_quote": "Over 50% of the Fortune 500 and over 30% of the Global 2000",
+        "cautions_es": "No significa que esas empresas dependan enteramente de Claude ni que todos sus empleados lo usen. El umbral describe ingresos de Anthropic procedentes de cada organización.",
+        "data": {
+          "fortune_500_percent_more_than": 50,
+          "global_2000_percent_more_than": 30,
+          "threshold_usd_ttm": 100000,
+          "as_of": "2026-09-30"
+        }
+      },
+      {
+        "id": "same_customer_expansion",
+        "title_es": "Los mismos clientes empezaron a gastar mucho más",
+        "explanation_es": "La retención neta de ingresos declarada fue aproximadamente 900% al cierre de septiembre de 2026: los ingresos trimestrales de la cohorte elegible fueron aproximadamente nueve veces los del trimestre base de un año antes.",
+        "evidence_type": "Company-defined operating metric; internally calculated; not independently verified",
+        "sources": [
+          {
+            "pdf_page": 146,
+            "printed_page": "135",
+            "section": "Customer Diffusion"
+          },
+          {
+            "pdf_page": 13,
+            "printed_page": "2",
+            "section": "Net Revenue Retention definition"
+          },
+          {
+            "pdf_page": 14,
+            "printed_page": "3",
+            "section": "Net Revenue Retention definition continuation"
+          },
+          {
+            "pdf_page": 78,
+            "printed_page": "67",
+            "section": "Operating metric limitations"
+          }
+        ],
+        "brief_quote": "Net Revenue Retention of approximately 900% as of September 30, 2026",
+        "cautions_es": "No es porcentaje de personas retenidas, ni significa que cada cliente multiplicó su gasto por nueve. Usa clientes con al menos $1 en el trimestre base, excluye suscriptores Pro y Max, incorpora expansión/contracción/bajas; compara trimestres separados por un año.",
+        "data": {
+          "net_revenue_retention_percent_approximately": 900,
+          "as_of": "2026-09-30",
+          "base_period": "three months ending a year prior",
+          "current_period": "three months ending on measurement date"
+        }
+      },
+      {
+        "id": "recognized_revenue",
+        "title_es": "Los ingresos dan el salto",
+        "explanation_es": "Ingresos reconocidos de 41 millones de dólares en 2023, 386 millones en 2024 y 4,585 millones en 2025. En enero-junio de 2026 alcanzaron 16,286 millones, frente a 1,163 millones en enero-junio de 2025.",
+        "evidence_type": "Annual GAAP data from audited statements; interim GAAP data unaudited",
+        "sources": [
+          {
+            "pdf_page": 33,
+            "printed_page": "22",
+            "section": "Summary Consolidated Financial and Other Data"
+          }
+        ],
+        "brief_quote": "Revenue",
+        "cautions_es": "Las cifras son USD millones. La comparación de semestres equivale aproximadamente a 14 veces; no mezclar ingresos anuales con run-rate. En marketplaces CSP se reconoce sobre base bruta y los costos van por separado (PDF 367/F-21).",
+        "data": {
+          "unit": "USD millions",
+          "FY2023": 41,
+          "FY2024": 386,
+          "FY2025": 4585,
+          "H1_2025": 1163,
+          "H1_2026": 16286,
+          "H1_ratio_calculated": 14.003439380911436
+        }
+      },
+      {
+        "id": "quarter_operating_turn",
+        "title_es": "Un trimestre cambia de signo",
+        "explanation_es": "En abril-junio de 2026, los ingresos fueron 11,555 millones de dólares y la utilidad operativa fue 974 millones. Un año antes, el mismo trimestre tuvo 787 millones de ingresos y una pérdida operativa de 1,200 millones.",
+        "evidence_type": "Unaudited quarterly GAAP financial statement",
+        "sources": [
+          {
+            "pdf_page": 168,
+            "printed_page": "157",
+            "section": "Quarterly Consolidated Statements of Operations"
+          },
+          {
+            "pdf_page": 170,
+            "printed_page": "159",
+            "section": "Operating Income (Loss)"
+          }
+        ],
+        "brief_quote": "Operating income (loss)",
+        "cautions_es": "No decir que Anthropic ya es rentable en términos netos: Q2 2026 todavía tuvo pérdida neta de 66,309 millones. El conjunto de H1 2026 tuvo pérdida operativa de 693 millones; no confundir trimestre con semestre. No afirmar que fue el primer trimestre positivo de toda su historia: la tabla sólo muestra seis trimestres.",
+        "data": {
+          "unit": "USD millions",
+          "Q2_2025": {
+            "revenue": 787,
+            "operating_result": -1200
+          },
+          "Q2_2026": {
+            "revenue": 11555,
+            "operating_result": 974,
+            "net_result": -66309
+          }
+        }
+      },
+      {
+        "id": "own_product_inside_company",
+        "title_es": "Claude también trabaja dentro de Anthropic",
+        "explanation_es": "La empresa afirma que Claude escribió más del 90% de las contribuciones a su base de código en septiembre de 2026. También reporta más de 45 veces el volumen diario de código por ingeniero en julio-septiembre de 2026 frente al promedio de 2024.",
+        "evidence_type": "Company-reported internal metrics and causal interpretation; not independent evidence",
+        "sources": [
+          {
+            "pdf_page": 147,
+            "printed_page": "136",
+            "section": "Operating Efficiency"
+          },
+          {
+            "pdf_page": 194,
+            "printed_page": "183",
+            "section": "Our Self-Reinforcing Loops"
+          }
+        ],
+        "brief_quote": "over 90% of the contributions to our codebase in September 2026 were written by Claude",
+        "cautions_es": "No convertir volumen de código en calidad, valor o productividad económica 45 veces mayor. No equivale a que 90% de todo el software histórico o 90% de todo el trabajo sea IA. La atribución causal a Claude es de la empresa.",
+        "data": {
+          "code_contributions_written_by_claude_percent_more_than": 90,
+          "code_contribution_period": "2026-09",
+          "daily_code_volume_per_engineer_ratio_more_than": 45,
+          "current_period": "Q3 2026",
+          "baseline_period": "FY2024 daily average"
+        }
+      },
+      {
+        "id": "revenue_per_employee",
+        "title_es": "El negocio creció más rápido que el equipo",
+        "explanation_es": "De septiembre de 2025 a septiembre de 2026, Anthropic reporta un crecimiento aproximado de 1,200% en ingresos de los últimos doce meses y de 170% en plantilla. Los ingresos TTM por empleado pasaron de 1.4 millones a más de 6.6 millones de dólares.",
+        "evidence_type": "Company-reported operating ratio; not independently verified",
+        "sources": [
+          {
+            "pdf_page": 147,
+            "printed_page": "136",
+            "section": "Operating Efficiency"
+          }
+        ],
+        "brief_quote": "TTM revenue per employee from $1.4 million to over $6.6 million",
+        "cautions_es": "Ingresos por empleado no son sueldo, utilidad por empleado ni medida causal de productividad. No usar para afirmar que cada persona produce exactamente ese valor.",
+        "data": {
+          "revenue_ttm_growth_percent_approximately": 1200,
+          "headcount_growth_percent_approximately": 170,
+          "start_revenue_ttm_per_employee_usd": 1400000,
+          "end_revenue_ttm_per_employee_usd_more_than": 6600000,
+          "from": "2025-09-30",
+          "to": "2026-09-30"
+        }
+      },
+      {
+        "id": "customer_and_channel_concentration",
+        "title_es": "El crecimiento también concentra riesgos",
+        "explanation_es": "Los cinco principales clientes aportaron aproximadamente 25% de los ingresos de enero-septiembre de 2026; ninguno superó 10%. Por otra parte, 48% de los ingresos de enero-junio de 2026 llegó mediante marketplaces de proveedores de nube.",
+        "evidence_type": "Company-disclosed concentration measures; periods differ",
+        "sources": [
+          {
+            "pdf_page": 67,
+            "printed_page": "56",
+            "section": "Customer and distribution concentration risk"
+          }
+        ],
+        "brief_quote": "our top five customers represented approximately 25% of our revenue",
+        "cautions_es": "Separar ventanas de nueve y seis meses. Los marketplaces son canales de distribución y cobro, no necesariamente los compradores finales; no decir que Amazon/Google/Microsoft compraron ese 48%. Muchos clientes grandes pueden reducir gasto sin compromisos largos.",
+        "data": {
+          "top5_revenue_share_percent_approximately": 25,
+          "top5_period": "nine months ended 2026-09-30",
+          "single_customer_max_threshold_percent": 10,
+          "csp_marketplace_revenue_share_percent_approximately": 48,
+          "csp_period": "six months ended 2026-06-30"
+        }
+      },
+      {
+        "id": "capital_and_cash",
+        "title_es": "Hay otra fuente de dinero además de las ventas",
+        "explanation_es": "Al 30 de junio de 2026, Anthropic declaraba 141.1 mil millones de dólares de capital captado acumulado, 112.4 mil millones de efectivo y equivalentes, y 19.3 mil millones de inversiones de corto plazo.",
+        "evidence_type": "Company-reported cumulative capital; balances grounded in interim financial reporting",
+        "sources": [
+          {
+            "pdf_page": 21,
+            "printed_page": "10",
+            "section": "Capital Efficiency"
+          },
+          {
+            "pdf_page": 193,
+            "printed_page": "182",
+            "section": "Capital Efficiency"
+          },
+          {
+            "pdf_page": 172,
+            "printed_page": "161",
+            "section": "Liquidity and Capital Resources"
+          }
+        ],
+        "brief_quote": "raised an aggregate of $141.1 billion of capital",
+        "cautions_es": "Capital captado no es ingreso por ventas, utilidad ni valoración. Efectivo, equivalentes e inversiones son saldos a una fecha, no ingresos del semestre. No sumar el capital acumulado al saldo de caja: se solapan.",
+        "data": {
+          "unit": "USD billions",
+          "as_of": "2026-06-30",
+          "cumulative_capital_raised": 141.1,
+          "cash_and_cash_equivalents": 112.4,
+          "short_term_investments": 19.3
+        }
+      },
+      {
+        "id": "compute_economics",
+        "title_es": "Cada dólar de infraestructura sostiene más ventas",
+        "explanation_es": "En abril-junio de 2026, los ingresos subieron 1,368% interanual y el gasto de cómputo e infraestructura, 300%. La compañía describe una arquitectura que usa cuatro familias de chips: AWS Trainium, Google TPUs, NVIDIA GPUs y AMD GPUs.",
+        "evidence_type": "Quarterly financial comparison plus company-described technical architecture",
+        "sources": [
+          {
+            "pdf_page": 146,
+            "printed_page": "135",
+            "section": "Compute Efficiency"
+          },
+          {
+            "pdf_page": 147,
+            "printed_page": "136",
+            "section": "Compute Efficiency"
+          },
+          {
+            "pdf_page": 168,
+            "printed_page": "157",
+            "section": "Quarterly statements"
+          }
+        ],
+        "brief_quote": "our compute and infrastructure expenses that grew 300% during the same period",
+        "cautions_es": "El gasto sí aumentó: no decir que bajó 300%. No equivale a una reducción universal del costo por consulta. El cómputo también sostiene investigación y uso interno; no es un costo puro de ventas.",
+        "data": {
+          "comparison_period": "Q2 2026 vs Q2 2025",
+          "revenue_yoy_growth_percent_rounded": 1368,
+          "compute_infrastructure_yoy_growth_percent_rounded": 300,
+          "compute_infrastructure_Q2_2025_usd_millions": 1390,
+          "compute_infrastructure_Q2_2026_usd_millions": 5558,
+          "chip_families": [
+            "AWS Trainium",
+            "Google TPUs",
+            "NVIDIA GPUs",
+            "AMD GPUs"
+          ]
+        }
+      },
+      {
+        "id": "future_capacity_commitments",
+        "title_es": "La infraestructura se reserva años antes",
+        "explanation_es": "Una nota del documento describe aproximadamente 417 mil millones de dólares en pagos mínimos futuros por nuevos contratos y ampliaciones posteriores a diciembre de 2025, principalmente cómputo e infraestructura.",
+        "evidence_type": "Disclosed contractual obligations in subsequent-events financial note",
+        "sources": [
+          {
+            "pdf_page": 409,
+            "printed_page": "F-63",
+            "section": "Compute and Infrastructure Transactions"
+          },
+          {
+            "pdf_page": 42,
+            "printed_page": "31",
+            "section": "Compute forecasting risk"
+          },
+          {
+            "pdf_page": 43,
+            "printed_page": "32",
+            "section": "Compute commitments risk"
+          }
+        ],
+        "brief_quote": "aggregate future minimum payment obligations of approximately $417 billion",
+        "cautions_es": "No es gasto anual, dinero ya pagado, deuda financiera total ni inversión en PIB. Los acuerdos empiezan en 2026-2027 y duran desde menos de un año hasta 20. El pasaje presenta aparte $125-150 mil millones estimados con términos no finalizados: no agregarlos como total confirmado. Riesgo: demanda variable frente a obligaciones largas. Nota 16: eventos posteriores evaluados hasta el 1 de junio de 2026. No es un saldo a octubre.",
+        "data": {
+          "unit": "USD billions",
+          "future_minimum_payment_obligations_approximately": 417,
+          "agreements_start": "2026-2027",
+          "term_range": "less than one year to 20 years",
+          "evaluation_date": "2026-06-01"
+        }
+      },
+      {
+        "id": "scale_has_limits",
+        "title_es": "Crecer no elimina los obstáculos",
+        "explanation_es": "El S-1 advierte que la energía puede limitar nuevos centros de datos, que decisiones de seguridad pueden retrasar o restringir lanzamientos, y que sus métricas operativas no han sido verificadas independientemente.",
+        "evidence_type": "Company-disclosed risks and measurement limitations; not realized-event claims",
+        "sources": [
+          {
+            "pdf_page": 45,
+            "printed_page": "34",
+            "section": "Electrical Power and Fuel Constraints"
+          },
+          {
+            "pdf_page": 153,
+            "printed_page": "142",
+            "section": "Product development and safety limitations"
+          },
+          {
+            "pdf_page": 78,
+            "printed_page": "67",
+            "section": "Operating metric limitations"
+          }
+        ],
+        "brief_quote": "have not been independently verified by third parties",
+        "cautions_es": "No presentar los riesgos como daños ya ocurridos ni atribuir cifras de empleo o PIB a Anthropic. Las cifras de clientes/retención y las métricas internas requieren atribución explícita a la empresa."
+      }
+    ],
+    "narrative_scenes": [
+      {
+        "title": "De una conversación a todo un equipo",
+        "arc_es": "El personaje ayuda primero a una persona. Luego se abren puertas: código, trabajo de oficina, equipos y grandes organizaciones. La cámara descubre que la adopción no sólo suma usuarios: también se profundiza dentro de las mismas empresas.",
+        "facts": [
+          "product_milestones",
+          "release_velocity",
+          "customer_base_growth",
+          "customer_depth",
+          "large_company_adoption",
+          "same_customer_expansion"
+        ],
+        "interactions_es": [
+          "Elegir entrar a una empresa pequeña o a una grande; ambos recorridos convergen en la expansión de usos.",
+          "Abrir una puerta marcada «los que ya estaban» para explicar 900% de retención de ingresos con una cohorte, sin atribuirlo a cada cliente."
+        ],
+        "key_caveat_es": "Cifras declaradas por Anthropic y tramos de clientes anidados; no sumar categorías."
+      },
+      {
+        "title": "El personaje aprende a sostener su propio peso",
+        "arc_es": "Los recibos de ventas se acumulan; detrás aparecen cómputo, personal y otros gastos. En un trimestre la balanza operativa cambia de signo. Al abrir otra capa, se ve por qué eso no significa utilidad neta ni dinero libre para siempre.",
+        "facts": [
+          "recognized_revenue",
+          "quarter_operating_turn",
+          "compute_economics",
+          "own_product_inside_company",
+          "revenue_per_employee"
+        ],
+        "interactions_es": [
+          "Alternar ingresos, resultado operativo y resultado neto del mismo trimestre.",
+          "Entrar al taller de Anthropic para ver su uso interno de Claude, con etiqueta «según la empresa»."
+        ],
+        "key_caveat_es": "Comparar periodos iguales; volumen de código no equivale a calidad o productividad económica."
+      },
+      {
+        "title": "Lo que hay que construir antes de la campana",
+        "arc_es": "La cámara sigue el cable hasta chips, centros de datos y energía. Llegan inversionistas, pero los contratos comprometen años de pagos. Algunas rutas se estrechan: clientes concentrados, canales de distribución, seguridad y capacidad. La campana aparece como otra etapa, no como resolución de todos los riesgos.",
+        "facts": [
+          "capital_and_cash",
+          "future_capacity_commitments",
+          "customer_and_channel_concentration",
+          "scale_has_limits"
+        ],
+        "interactions_es": [
+          "Seguir una moneda de ventas o una de inversión para revelar que son flujos distintos.",
+          "Abrir «qué puede frenar el crecimiento» con tres rutas: demanda, capacidad y confianza."
+        ],
+        "key_caveat_es": "No sumar saldos y flujos, ni presentar compromisos futuros como gasto ya realizado. IPO propuesto, no debut consumado."
+      }
+    ],
+    "recommended_attribution_es": "Según Anthropic en su S-1 del 26 de octubre de 2026. Los estados anuales citados son auditados; los resultados interinos y trimestrales son no auditados. Las métricas operativas se basan en registros internos y no cuentan aquí con verificación independiente."
+  },
+  "ipo_enrichment": {
+    "source_date": "2026-10-26",
+    "scope": "Extraction and interpretation of the user-provided preliminary prospectus; no independent document-authenticity determination.",
+    "page_convention": "pdf_page is 1-based physical PDF page; printed_page is the printed prospectus page.",
+    "facts": [
+      {
+        "id": "ipo_terms_pending",
+        "title_es": "Todavía no hay precio de salida",
+        "status": "pending_terms",
+        "narrative_es": "La oferta propone acciones clase A y solicita cotizar en Nasdaq como ANT. El precio por acción, su rango, las acciones ofertadas, el total después del IPO y la fecha de entrega siguen en blanco.",
+        "data": {
+          "ticker_applied_for": "ANT",
+          "exchange_applied_for": "Nasdaq Global Select Market",
+          "ipo_price_usd": null,
+          "ipo_price_range": null,
+          "primary_shares_offered": null,
+          "secondary_shares_offered": null,
+          "post_ipo_economic_shares": null,
+          "ipo_valuation_usd": null,
+          "completed_ipo": false
+        },
+        "sources": [
+          {
+            "pdf_page": 2,
+            "printed_page": null
+          },
+          {
+            "pdf_page": 29,
+            "printed_page": "18"
+          }
+        ],
+        "guardrail_es": "Una solicitud de cotización no confirma que la salida a bolsa haya ocurrido. No convertir una valuación privada o una gráfica externa en el precio del IPO."
+      },
+      {
+        "id": "primary_secondary_and_proceeds",
+        "title_es": "¿A dónde iría el dinero?",
+        "status": "stated_intent",
+        "narrative_es": "La empresa y algunos accionistas venderían acciones. Sólo las acciones vendidas por Anthropic aportarían fondos a la empresa; la venta de accionistas existentes no le genera ingresos. Anthropic prevé destinar los fondos a operación, cómputo e infraestructura, contratación y retención de talento, posibles adquisiciones y obligaciones fiscales relacionadas con RSU.",
+        "data": {
+          "net_proceeds_usd": null,
+          "tax_withholding_amount_usd": null
+        },
+        "sources": [
+          {
+            "pdf_page": 135,
+            "printed_page": "124"
+          }
+        ],
+        "guardrail_es": "Los montos y porcentajes por destino no están definidos. Es un uso previsto con amplia discrecionalidad de la empresa, no una asignación ejecutada."
+      },
+      {
+        "id": "economic_rights_and_control",
+        "title_es": "Comprar una parte no significa controlar la historia",
+        "status": "proposed_post_ipo_governance",
+        "narrative_es": "La clase A tiene un voto por acción; la clase N tiene derechos económicos equivalentes, pero normalmente no vota. El LTBT elige y puede remover a la mayoría del consejo mediante la clase T. Founder LLC tendrá una acción clase F que concentra 50.1% de los votos en asuntos sometidos a accionistas generales. Las clases T, F y E carecen de derechos económicos.",
+        "data": {
+          "class_A_votes_per_share": 1,
+          "class_N_votes_per_share": 0,
+          "founder_LLC_general_voting_percent": 50.1,
+          "LTBT_board_seat_control": "majority",
+          "non_economic_classes": [
+            "T",
+            "F",
+            "E"
+          ]
+        },
+        "sources": [
+          {
+            "pdf_page": 2,
+            "printed_page": null
+          },
+          {
+            "pdf_page": 30,
+            "printed_page": "19"
+          },
+          {
+            "pdf_page": 120,
+            "printed_page": "109"
+          }
+        ],
+        "guardrail_es": "No confundir 50.1% de votos con 50.1% de propiedad económica. La clase F no controla la elección de directores clase T. Esta estructura limita la influencia de accionistas públicos y puede priorizar la misión sobre sus intereses financieros."
+      },
+      {
+        "id": "dilution_pending_and_future_issuance",
+        "title_es": "Más acciones pueden cambiar tu proporción",
+        "status": "risk_and_pending_calculation",
+        "narrative_es": "Las tablas de dilución del IPO no contienen aún cifras. El documento advierte que opciones, RSU y nuevas emisiones pueden diluir a quienes compren. La dilución contable del prospecto compara el precio pagado con el valor tangible neto por acción; no es lo mismo que la reducción de tu porcentaje de propiedad.",
+        "data": {
+          "ipo_tangible_book_value_dilution_per_share_usd": null,
+          "ipo_pro_forma_share_count": null
+        },
+        "sources": [
+          {
+            "pdf_page": 140,
+            "printed_page": "129"
+          },
+          {
+            "pdf_page": 141,
+            "printed_page": "130"
+          },
+          {
+            "pdf_page": 142,
+            "printed_page": "131"
+          }
+        ],
+        "guardrail_es": "Una menor participación porcentual no implica por sí sola pérdida proporcional de valor: emitir acciones también puede aportar efectivo. No calcular dilución real sin el precio y la estructura de capital definitivos."
+      },
+      {
+        "id": "stock_split",
+        "title_es": "Partir una acción no multiplica el valor",
+        "status": "reported_completed_corporate_action",
+        "narrative_es": "El documento informa un split de 10 por 1 de las clases A y N el 17 de septiembre de 2026, y ajusta retrospectivamente las cifras por acción. Sirve para explicar por qué el precio unitario, aislado, no dice qué tan grande es una empresa.",
+        "data": {
+          "split_factor": 10,
+          "date": "2026-09-17",
+          "classes": [
+            "A",
+            "N"
+          ]
+        },
+        "sources": [
+          {
+            "pdf_page": 32,
+            "printed_page": "21"
+          }
+        ],
+        "guardrail_es": "No volver a multiplicar por 10 los datos del prospecto. El efecto mecánico de un split es dividir el precio por el factor y multiplicar las acciones, sin crear valor por sí mismo."
+      },
+      {
+        "id": "dividend_policy",
+        "title_es": "No promete un pago periódico",
+        "status": "current_policy",
+        "narrative_es": "Anthropic dice que nunca ha pagado dividendos en efectivo y que pretende reinvertir los fondos y futuras ganancias. No espera pagar dividendos en el futuro previsible.",
+        "sources": [
+          {
+            "pdf_page": 136,
+            "printed_page": "125"
+          }
+        ],
+        "guardrail_es": "No presentar un rendimiento, dividendo o revalorización futura garantizados."
+      },
+      {
+        "id": "public_benefit_fund",
+        "title_es": "Una parte reservada para beneficio público",
+        "status": "reported_contribution_and_discretionary_framework",
+        "narrative_es": "El documento reporta la aportación de 846,840,960 acciones clase N al Anthropic Public Benefit Fund: 5% de las acciones totalmente diluidas al 30 de junio de 2026, asumiendo conversión completa de las notas de Amazon. Un marco aprobado permite futuras aportaciones de hasta 2% vinculadas a hitos de alza de 50% del precio, a discreción del consejo.",
+        "data": {
+          "contributed_class_N_shares": 846840960,
+          "fully_diluted_reference_percent": 5,
+          "reference_date": "2026-06-30",
+          "future_contribution_max_percent_per_milestone": 2,
+          "milestone_price_increase_percent": 50,
+          "requires_board_discretion": true
+        },
+        "sources": [
+          {
+            "pdf_page": 23,
+            "printed_page": "12"
+          },
+          {
+            "pdf_page": 154,
+            "printed_page": "143"
+          },
+          {
+            "pdf_page": 155,
+            "printed_page": "144"
+          }
+        ],
+        "guardrail_es": "Es una aportación de acciones a una subsidiaria, no efectivo ya entregado a beneficiarios externos. No es 5% de ingresos ni 5% de ganancias. Las emisiones posteriores pueden diluir a accionistas y requieren condiciones temporales y decisión del consejo."
+      },
+      {
+        "id": "fixed_compute_variable_demand",
+        "title_es": "Contratos largos, demanda que puede cambiar",
+        "status": "disclosed_business_risk",
+        "narrative_es": "Muchos compromisos de cómputo duran varios años y pueden obligar a pagar aunque la capacidad no se use. En cambio, gran parte del ingreso depende del consumo de clientes y no está asegurado por contratos largos. Si la demanda queda por debajo de lo esperado, la capacidad puede convertirse en una carga financiera.",
+        "sources": [
+          {
+            "pdf_page": 42,
+            "printed_page": "31"
+          },
+          {
+            "pdf_page": 43,
+            "printed_page": "32"
+          }
+        ],
+        "guardrail_es": "Los totales de compromisos a septiembre aparecen en blanco en esta sección. No rellenarlos con los 417 mil millones de la nota de eventos posteriores sin conservar su alcance y periodo distintos."
+      },
+      {
+        "id": "customer_concentration",
+        "title_es": "Pocos clientes todavía pesan mucho",
+        "status": "reported_risk_metric",
+        "narrative_es": "Los cinco principales clientes representaron aproximadamente 25% de los ingresos de los primeros nueve meses de 2026. Ningún cliente superó 10%, pero varios pueden reducir su consumo o tienen contratos de vencimiento cercano.",
+        "data": {
+          "period": "Nine months ended 2026-09-30",
+          "top_5_revenue_percent_approx": 25,
+          "single_customer_over_10_percent": false
+        },
+        "sources": [
+          {
+            "pdf_page": 67,
+            "printed_page": "56"
+          }
+        ],
+        "guardrail_es": "Es una proporción de nueve meses; no usarla como cifra del semestre ni del trimestre. No inferir las identidades de esos cinco clientes."
+      },
+      {
+        "id": "economy_power_and_water",
+        "title_es": "La IA también ocupa un lugar en el mundo físico",
+        "status": "disclosed_constraints_and_commitments",
+        "narrative_es": "La expansión depende de electricidad, redes, centros de datos y agua para enfriamiento. El documento reconoce competencia por suministro, restricciones y mayores costos. También describe compromisos voluntarios para cubrir mejoras de red, procurar nueva generación y reducir presión durante picos de demanda.",
+        "sources": [
+          {
+            "pdf_page": 46,
+            "printed_page": "35"
+          },
+          {
+            "pdf_page": 47,
+            "printed_page": "36"
+          }
+        ],
+        "guardrail_es": "Son riesgos y medidas descritos por la empresa. El prospecto no cuantifica un efecto neto en tarifas domésticas, agua disponible, empleo, inflación o PIB. Evitar convertir posibles efectos locales en impactos ya medidos."
+      },
+      {
+        "id": "copyright_and_data_litigation",
+        "title_es": "Aprender de contenido ajeno también tiene costos legales",
+        "status": "settled_and_pending_cases_distinguished",
+        "narrative_es": "El prospecto reporta un acuerdo por 1,500 millones de dólares en Bartz, aprobado por el tribunal en julio de 2026. Es un acuerdo, no una multa ni una sentencia por ese monto. Otras demandas sobre letras musicales, libros y uso de datos siguen abiertas; Anthropic disputa las acusaciones.",
+        "cases": [
+          {
+            "name": "Bartz, et al. v. Anthropic",
+            "status_as_reported": "Settlement reached September 2025 and approved by district court July 2026",
+            "settlement_usd_millions": 1500,
+            "interest": "plus interest earned thereon",
+            "expense_recorded_year": 2025,
+            "cash_paid_in_2025_usd_millions": 300,
+            "remaining_liability_as_of_2026_06_30_usd_millions": 1200,
+            "note_es": "La aprobación judicial del acuerdo no cierra los casos individuales de quienes se excluyeron de la acción colectiva."
+          },
+          {
+            "name": "Concord I",
+            "status_as_reported": "Pending; summary-judgment hearing October 21, 2026; no ruling or loss amount stated here",
+            "claims_es": "Copia y difusión de letras y eliminación de información de gestión de derechos, según los demandantes.",
+            "damages_sought": "unspecified",
+            "company_position": "Disputes allegations and intends to defend."
+          },
+          {
+            "name": "Music Publisher Matters and Bartz opt-out actions",
+            "status_as_reported": "Music publisher cases preliminary; opt-out actions at various stages",
+            "claims_es": "Demandas sobre adquisición, uso y resultados de materiales protegidos.",
+            "damages_sought": "unspecified",
+            "company_position": "Disputes allegations and intends to defend."
+          },
+          {
+            "name": "Reddit, Inc. v. Anthropic",
+            "status_as_reported": "Pending; narrowed September 2026 to breach of contract, interference with contract and unfair competition claims",
+            "claims_es": "Uso de datos de Reddit, según la demanda.",
+            "company_position": "Disputes allegations and intends to defend.",
+            "note_es": "No etiquetar este caso como una condena por copyright."
+          }
+        ],
+        "sources": [
+          {
+            "pdf_page": 405,
+            "printed_page": "F-59"
+          },
+          {
+            "pdf_page": 406,
+            "printed_page": "F-60"
+          },
+          {
+            "pdf_page": 252,
+            "printed_page": "241"
+          },
+          {
+            "pdf_page": 33,
+            "printed_page": "22"
+          }
+        ],
+        "guardrail_es": "Reportar cada situación según el prospecto al 26 de octubre de 2026. Una acusación no demuestra responsabilidad. No dar por pagados los 1,500 millones: durante 2025 pagó 300 millones y al 30 de junio de 2026 mantenía 1,200 millones de pasivo. No asignar montos a litigios que el documento deja sin estimar."
+      },
+      {
+        "id": "competition_and_price_pressure",
+        "title_es": "Crecer rápido no garantiza conservar la ventaja",
+        "status": "disclosed_competitive_risk",
+        "narrative_es": "Anthropic identifica a Google y OpenAI como rivales directos y también enfrenta modelos abiertos, proveedores especializados y empresas capaces de integrar IA en productos existentes. Advierte que rivales pueden subsidiar precios, aprovechar su distribución o lograr capacidades similares, reduciendo la diferenciación y presionando precios.",
+        "named_frontier_competitors": [
+          "Google",
+          "OpenAI"
+        ],
+        "sources": [
+          {
+            "pdf_page": 51,
+            "printed_page": "40"
+          },
+          {
+            "pdf_page": 52,
+            "printed_page": "41"
+          }
+        ],
+        "guardrail_es": "Es el riesgo competitivo descrito por la empresa; no demuestra que uno de esos rivales vaya a ganar. No confundir ritmo histórico de ingresos o valuación con ventaja futura garantizada."
+      }
+    ],
+    "conceptual_distinctions": [
+      {
+        "label_es": "Precio por acción",
+        "definition_es": "Lo que cuesta una unidad de participación. Un precio unitario bajo no significa que la empresa sea barata."
+      },
+      {
+        "label_es": "Valor del capital",
+        "definition_es": "En el modelo sencillo: precio por acción × acciones económicas totales. No es dinero en caja ni ingresos anuales. Para Anthropic se necesita la estructura de capital definitiva; T, F y E no tienen derechos económicos."
+      },
+      {
+        "label_es": "Fondos de la oferta",
+        "definition_es": "Precio × acciones nuevas vendidas por la empresa produce fondos brutos. Los fondos netos restan comisiones y gastos. La venta secundaria paga al accionista vendedor."
+      },
+      {
+        "label_es": "Valor de empresa",
+        "definition_es": "No es sinónimo automático de valor del capital: normalmente requiere ajustes por deuda, caja y otros derechos. El simulador no lo calcula."
+      },
+      {
+        "label_es": "Precio, valor contable y valor futuro",
+        "definition_es": "El precio de mercado, el valor tangible contable y una estimación de valor futuro son medidas diferentes; ninguna subida futura está garantizada."
+      },
+      {
+        "label_es": "Participación y control",
+        "definition_es": "El porcentaje económico no determina por sí solo el poder de voto cuando hay varias clases de acciones."
+      }
+    ],
+    "educational_simulator": {
+      "title_es": "El laboratorio de una acción",
+      "persistent_label_es": "Ejemplo de una empresa imaginaria. No son términos del IPO de Anthropic ni un pronóstico.",
+      "default_inputs": {
+        "hypothetical_price_usd": 20,
+        "existing_economic_shares": 100000000,
+        "new_primary_shares": 10000000,
+        "secondary_shares": 10000000,
+        "example_holder_shares": 1000000
+      },
+      "input_ranges": {
+        "price_usd": [
+          5,
+          50
+        ],
+        "existing_shares_millions": [
+          50,
+          200
+        ],
+        "new_primary_shares_millions": [
+          0,
+          50
+        ],
+        "secondary_shares_millions": [
+          0,
+          25
+        ]
+      },
+      "formulas": {
+        "pre_offer_equity_value": "price * existing_economic_shares",
+        "post_offer_economic_shares": "existing_economic_shares + new_primary_shares",
+        "post_offer_equity_value_at_same_price": "price * (existing_economic_shares + new_primary_shares)",
+        "gross_cash_to_company": "price * new_primary_shares",
+        "gross_cash_to_selling_shareholders": "price * secondary_shares",
+        "holder_economic_ownership_before": "holder_shares / existing_economic_shares",
+        "holder_economic_ownership_after": "holder_shares / (existing_economic_shares + new_primary_shares)"
+      },
+      "default_outputs": {
+        "pre_offer_equity_value_usd": 2000000000,
+        "post_offer_equity_value_usd": 2200000000,
+        "gross_cash_to_company_usd": 200000000,
+        "gross_cash_to_sellers_usd": 200000000,
+        "holder_ownership_before_percent": 1,
+        "holder_ownership_after_percent": 0.9090909091
+      },
+      "story_beats": [
+        {
+          "action_es": "Mueve el precio",
+          "response_es": "Cambia el valor implícito de todas las acciones. Una vez emitidas, que suba la cotización no deposita automáticamente dinero en la cuenta de la empresa."
+        },
+        {
+          "action_es": "Emite acciones nuevas",
+          "response_es": "Entra dinero bruto a la empresa y crece el número de participaciones. Quien no compra más tendrá una proporción menor."
+        },
+        {
+          "action_es": "Vende acciones existentes",
+          "response_es": "El dinero va al accionista vendedor. No aumenta el número de acciones de la empresa."
+        },
+        {
+          "action_es": "Haz un split de 10 por 1",
+          "response_es": "En el ejemplo, 100 millones de acciones a 20 dólares se vuelven 1,000 millones a 2 dólares. El total sigue siendo 2,000 millones: dividir las piezas no crea valor."
+        }
+      ],
+      "limitations_es": "Una sola clase económica imaginaria, mismo precio antes y después de la emisión; sin comisiones, impuestos, descuentos, opciones ni reacciones del mercado. La proporción calculada es económica, no poder de voto. No representa la tabla de capitalización real de Anthropic."
+    },
+    "economic_pathways_for_story": [
+      {
+        "channel": "productivity",
+        "label_es": "Trabajar con menos pasos",
+        "type": "qualitative_possible_effect_not_measured_GDP",
+        "upside_es": "Herramientas capaces de resolver tareas pueden ahorrar tiempo, mejorar servicios y permitir productos nuevos.",
+        "tradeoff_es": "La adopción exige integración, supervisión y capacitación; algunas tareas y puestos pueden cambiar.",
+        "evidence_boundary_es": "No asignar una cifra de empleos creados o eliminados ni crecimiento del PIB a partir de estos estados financieros."
+      },
+      {
+        "channel": "capital_and_suppliers",
+        "label_es": "El dinero viaja más allá de Anthropic",
+        "type": "qualitative_transmission_supported_by_expense_and_commitment_disclosures",
+        "upside_es": "El gasto en cómputo puede generar demanda para chips, energía, construcción y servicios.",
+        "tradeoff_es": "La demanda prevista puede no materializarse; contratos fijos y capacidad ociosa trasladan riesgo a empresas y financiadores.",
+        "evidence_boundary_es": "Gasto, contratos futuros y actividad económica no son medidas intercambiables. No sumar ingresos y compras de la cadena como si cada dólar fuera PIB nuevo."
+      },
+      {
+        "channel": "communities",
+        "label_es": "La escala digital tiene costos locales",
+        "type": "qualitative_effect_supported_by_disclosed_risks",
+        "upside_es": "Nuevas instalaciones e inversiones pueden ampliar infraestructura y oportunidades para proveedores.",
+        "tradeoff_es": "Electricidad, agua y capacidad de red pueden convertirse en restricciones o costos para las comunidades.",
+        "evidence_boundary_es": "El documento no permite cuantificar el saldo social o ambiental ni afirmar efectos locales concretos sin evidencia adicional."
+      }
+    ],
+    "do_not_use_as_ipo_valuation_denominator": [
+      "The 2,024,972,990 weighted-average basic/diluted common shares in H1 2026 earnings-per-share reporting: this is a period-average denominator, not the post-IPO cap table.",
+      "846,840,960 divided by 5%: a June30 fully diluted reference under specific conversion assumptions, not final IPO shares.",
+      "Classes T, F and E: no economic rights, so do not count them as ordinary economic shares in the toy capitalization formula.",
+      "The SemiAnalysis chart: valuation reference with unverified provenance/date, not actual IPO terms."
+    ],
+    "delegated_financial_context": "Capital raised, cash, quarterly profitability and compute commitments are researched separately by the business-enrichment agent; see parent integration."
+  },
+  "per_dollar": {
+    "table_source": {
+      "pdf_page": 33,
+      "printed_page": "22",
+      "heading": "Summary Consolidated Financial and Other Data / Consolidated Statements of Operations Data",
+      "unit": "USD millions",
+      "column": "Six Months Ended June 30, 2026",
+      "audit_status": "Unaudited interim consolidated financial statements"
+    },
+    "period": {
+      "start": "2026-01-01",
+      "end": "2026-06-30",
+      "label_es": "Enero–junio de 2026"
+    },
+    "denominator": {
+      "label_es": "Ingresos reconocidos",
+      "amount_usd_millions": 16286,
+      "amount_usd": 16286000000
+    },
+    "operating_expense_rows": [
+      {
+        "id": "compute_and_infrastructure",
+        "source_label_en": "Compute and infrastructure",
+        "label_es": "Cómputo e infraestructura",
+        "amount_usd_millions": 8945,
+        "amount_usd": 8945000000,
+        "note_es": "Incluye cómputo para investigación, desarrollo de modelos, atención a clientes y uso interno; también infraestructura y energía asociada. No es sólo el costo de responder chats.",
+        "source": {
+          "pdf_page": 33,
+          "printed_page": "22"
+        },
+        "usd_per_1usd_revenue_fraction": "8945/16286",
+        "usd_per_1usd_revenue": 0.5492447500921036,
+        "cents_per_1usd_revenue_fraction": "447250/8143",
+        "cents_per_1usd_revenue": 54.92447500921036,
+        "cents_per_1usd_revenue_decimal": "54.92447500921036473044332555569200540341",
+        "display_cents_1dp": "54.9",
+        "display_cents_2dp": "54.92"
+      },
+      {
+        "id": "personnel",
+        "source_label_en": "Personnel",
+        "label_es": "Personal",
+        "amount_usd_millions": 3152,
+        "amount_usd": 3152000000,
+        "note_es": "Incluye remuneración en acciones, salarios, bonos, prestaciones e impuestos de nómina. No equivale íntegramente a efectivo pagado en el semestre.",
+        "source": {
+          "pdf_page": 33,
+          "printed_page": "22"
+        },
+        "usd_per_1usd_revenue_fraction": "1576/8143",
+        "usd_per_1usd_revenue": 0.1935404642023824,
+        "cents_per_1usd_revenue_fraction": "157600/8143",
+        "cents_per_1usd_revenue": 19.35404642023824,
+        "cents_per_1usd_revenue_decimal": "19.35404642023824143436080068770723320643",
+        "display_cents_1dp": "19.4",
+        "display_cents_2dp": "19.35"
+      },
+      {
+        "id": "bartz_settlement",
+        "source_label_en": "Bartz settlement",
+        "label_es": "Acuerdo Bartz",
+        "amount_usd_millions": 0,
+        "amount_usd": 0,
+        "note_es": "La tabla muestra una raya en H1 2026: cero gasto reconocido en esta fila para el semestre. No significa que no hubiera saldo pendiente o pagos relacionados con el acuerdo.",
+        "source": {
+          "pdf_page": 33,
+          "printed_page": "22"
+        },
+        "usd_per_1usd_revenue_fraction": "0/1",
+        "usd_per_1usd_revenue": 0.0,
+        "cents_per_1usd_revenue_fraction": "0/1",
+        "cents_per_1usd_revenue": 0.0,
+        "cents_per_1usd_revenue_decimal": "0",
+        "display_cents_1dp": "0.0",
+        "display_cents_2dp": "0.00"
+      },
+      {
+        "id": "sales_marketing_and_partnerships",
+        "source_label_en": "Sales, marketing, and partnerships",
+        "label_es": "Ventas, marketing y alianzas",
+        "amount_usd_millions": 3168,
+        "amount_usd": 3168000000,
+        "note_es": "Incluye costos de socios de canal y marketing/publicidad; no es sólo gasto en anuncios.",
+        "source": {
+          "pdf_page": 33,
+          "printed_page": "22"
+        },
+        "usd_per_1usd_revenue_fraction": "1584/8143",
+        "usd_per_1usd_revenue": 0.19452290310696305,
+        "cents_per_1usd_revenue_fraction": "158400/8143",
+        "cents_per_1usd_revenue": 19.452290310696302,
+        "cents_per_1usd_revenue_decimal": "19.45229031069630357362151541201031560850",
+        "display_cents_1dp": "19.5",
+        "display_cents_2dp": "19.45"
+      },
+      {
+        "id": "other_operating_and_administrative",
+        "source_label_en": "Other operating and administrative",
+        "label_es": "Otros gastos operativos y administrativos",
+        "amount_usd_millions": 1714,
+        "amount_usd": 1714000000,
+        "note_es": "Agrupa los demás gastos de operación y administración. No inventar una categoría separada de investigación y desarrollo: esa fila no existe en la tabla.",
+        "source": {
+          "pdf_page": 33,
+          "printed_page": "22"
+        },
+        "usd_per_1usd_revenue_fraction": "857/8143",
+        "usd_per_1usd_revenue": 0.10524376765319907,
+        "cents_per_1usd_revenue_fraction": "85700/8143",
+        "cents_per_1usd_revenue": 10.524376765319907,
+        "cents_per_1usd_revenue_decimal": "10.52437676531990666830406484096770232101",
+        "display_cents_1dp": "10.5",
+        "display_cents_2dp": "10.52"
+      }
+    ],
+    "total_operating_expenses": {
+      "label_es": "Gastos operativos totales",
+      "amount_usd_millions": 16979,
+      "usd_per_1usd_revenue_fraction": "16979/16286",
+      "usd_per_1usd_revenue": 1.0425518850546482,
+      "cents_per_1usd_revenue_fraction": "848950/8143",
+      "cents_per_1usd_revenue": 104.25518850546482,
+      "cents_per_1usd_revenue_decimal": "104.2551885054648164067297064963772565394",
+      "display_cents_1dp": "104.3",
+      "display_cents_2dp": "104.26"
+    },
+    "operating_loss": {
+      "label_es": "Pérdida operativa",
+      "amount_usd_millions": 693,
+      "signed_operating_result_usd_millions": -693,
+      "usd_per_1usd_revenue_fraction": "693/16286",
+      "usd_per_1usd_revenue": 0.042551885054648166,
+      "cents_per_1usd_revenue_fraction": "34650/8143",
+      "cents_per_1usd_revenue": 4.255188505464816,
+      "cents_per_1usd_revenue_decimal": "4.255188505464816406729706496377256539359",
+      "display_cents_1dp": "4.3",
+      "display_cents_2dp": "4.26"
+    },
+    "exact_formula": "(8945 + 3152 + 0 + 3168 + 1714) / 16286 = 16979 / 16286; operating loss = 16979 - 16286 = 693 (USD millions).",
+    "suggested_copy_es": "Por cada US$1 de ingreso, Anthropic reconoció aproximadamente US$1.043 de gastos operativos en enero–junio de 2026. La diferencia fue una pérdida operativa de 4.26 centavos.",
+    "display_notes_es": [
+      "Usar importes originales para longitudes y cálculos. Los valores a dos decimales por fila suman 104.24 centavos, mientras que el total calculado antes de redondear es 104.26: no calcular el total a partir de etiquetas redondeadas.",
+      "A un decimal las filas dan 54.9 + 19.4 + 0.0 + 19.5 + 10.5 = 104.3 centavos; pérdida 4.3 centavos.",
+      "La raya de Bartz es cero para esta fila/periodo. Puede ocultarse visualmente sólo si se aclara que no hubo gasto reconocido en esa categoría durante el semestre."
+    ],
+    "interpretation_limits_es": [
+      "Proporción de ingresos y gastos contables de todo el semestre; no es el costo de un chat, de una respuesta, de un token ni de un cliente.",
+      "No es una distribución literal del efectivo cobrado; ingresos reconocidos y gastos no equivalen siempre a cobros y pagos.",
+      "No sumar pérdida neta, intereses, cambios de valor razonable ni impuestos: son filas fuera del resultado operativo.",
+      "No hay fila independiente de investigación y desarrollo en esta presentación; investigación está incluida en categorías de gasto por naturaleza.",
+      "No inferir costos fijos/variables, costo marginal o margen bruto de estas proporciones."
+    ],
+    "category_definition_source": {
+      "pdf_page": 367,
+      "printed_page": "F-21"
+    },
+    "visual_verification": {
+      "verified": true,
+      "image": "/Users/pabloparedeslombardo/Documents/ChatGPT/IPO Anthropic Game/tmp/pdfs/financial-summary.png",
+      "check": "Last column of PDF33, H1 2026; all five rows, total and loss verified visually."
+    }
+  },
+  "external_context": [
+    {
+      "source": "NBER Working Paper 31161, 2023 revision",
+      "url": "https://www.nber.org/papers/w31161",
+      "sample": 5179,
+      "productivity_average_percent": 14,
+      "scope": "Customer support study, not Claude or economy-wide GDP."
+    },
+    {
+      "source": "IEA, Key Questions on Energy and AI (2026)",
+      "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary",
+      "data_center_electricity_TWh_2025": 485,
+      "projected_TWh_2030": 950,
+      "scope": "Global data centres, central projection; not Anthropic consumption.",
+      "license": "CC BY 4.0; summarized adaptation"
+    }
+  ]
 }

@@ -6,9 +6,13 @@ const C = Object.freeze({
 });
 const POSES = [
   [248, 354, .88], [210, 354, 1], [214, 350, 1.18], [301, 365, .85],
-  [69, 389, .57], [227, 358, .98], [304, 339, .92], [172, 354, 1.05], [258, 348, 1.16]
+  [69, 389, .57], [227, 358, .98], [304, 339, .92], [172, 354, 1.05], [258, 348, 1.16],
+  [248, 354, .95], [287, 355, .94], [182, 355, .96], [293, 369, .94], [198, 357, .97]
 ];
-const DEFAULTS = { year: 2025, age: 5, branch: -1, economy: 'adoption', flow: 'primary' };
+const DEFAULTS = {
+  year: 2025, age: 5, branch: -1, economy: 'adoption', flow: 'primary',
+  product: 'platform', customerTier: '100k', lens: 'operations', risk: 'compute', sharePrice: 25, shareCount: 10
+};
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 
 export class StoryStage {
@@ -48,10 +52,15 @@ export class StoryStage {
 
   setScene(index, options = {}) {
     if (this._disposed) return;
-    const next = clamp(Number.isFinite(index) ? Math.round(index) : 0, 0, 8);
+    const next = clamp(Number.isFinite(index) ? Math.round(index) : 0, 0, POSES.length - 1);
     const opts = { ...this.options, ...options };
     opts.year = [2023, 2024, 2025].includes(opts.year) ? opts.year : 2025;
     opts.age = [3, 4, 5].includes(opts.age) ? opts.age : 5;
+    opts.lens = ['operations', 'net', 'cash'].includes(opts.lens) ? opts.lens : DEFAULTS.lens;
+    opts.risk = ['compute', 'competition', 'trust', 'control'].includes(opts.risk) ? opts.risk : DEFAULTS.risk;
+    opts.product = ['platform', 'code', 'cowork'].includes(opts.product) ? opts.product : DEFAULTS.product;
+    opts.customerTier = ['100k', '1m', '10m'].includes(opts.customerTier) ? opts.customerTier : DEFAULTS.customerTier;
+    for (const key of ['sharePrice', 'shareCount']) opts[key] = Number.isFinite(opts[key]) ? Math.max(0, opts[key]) : DEFAULTS[key];
     const changed = next !== this.index;
     this.timeline?.kill();
     this.ringTimeline?.kill();
@@ -59,7 +68,7 @@ export class StoryStage {
     if (changed) {
       this.previous = { index: this.index, options: { ...this.options }, growth: this.detail.growth };
       this.travel.progress = 0;
-      this.travel.direction = next > this.index ? 1 : -1;
+      this.travel.direction = options.direction === 1 || options.direction === -1 ? options.direction : next > this.index ? 1 : -1;
       this.bell.rung = false;
     }
     this.index = next;
@@ -79,20 +88,20 @@ export class StoryStage {
       defaults: { ease: 'power2.inOut' },
       onUpdate: () => this.draw(),
       onComplete: () => { this.previous = null; this.pose.walk = 0; this.draw(); }
-    });
+    }).addLabel('depart', 0).addLabel('arrive', .78);
     if (changed) {
       this.pose.walk = 1;
-      this.timeline.to(this.travel, { progress: 1, duration: .92 }, 0)
-        .to(this.pose, { ...target, walk: 1, duration: .78 }, .06)
-        .to(this.pose, { walk: 0, duration: .2 }, .78);
+      this.timeline.to(this.travel, { progress: 1, duration: .92 }, 'depart')
+        .to(this.pose, { ...target, walk: 1, duration: .78 }, 'depart+=.06')
+        .to(this.pose, { walk: 0, duration: .2 }, 'arrive');
     } else {
-      this.timeline.to(this.pose, { ...target, duration: .42 }, 0);
+      this.timeline.to(this.pose, { ...target, duration: .42 }, 'depart');
       // An option can change while a scroll-triggered scene is still arriving.
       // Finish that spatial travel instead of snapping when previous is cleared.
-      if (this.previous) this.timeline.to(this.travel, { progress: 1, duration: .42 }, 0);
+      if (this.previous) this.timeline.to(this.travel, { progress: 1, duration: .42 }, 'depart');
     }
     this.detail.activity = 0;
-    this.timeline.to(this.detail, { growth: opts.year - 2023, activity: 1, duration: .65 }, 0);
+    this.timeline.to(this.detail, { growth: opts.year - 2023, activity: 1, duration: .65 }, 'depart');
     this._syncPlayback();
   }
 
@@ -213,6 +222,16 @@ export class StoryStage {
     for (let j = 0; j < Math.floor((h - 30) / 29); j++) for (let i = 0; i < Math.floor((w - 12) / 24); i++) p.rect(x + 10 + i * 24, y + 12 + j * 29, 12, 16, j % 2 ? C.ghost : C.paper, C.rule, 1);
     p.rect(x + w / 2 - 10, base - 26, 20, 26, C.ghost);
   }
+  _document(p, x, y, w = 57, h = 76, tone = C.paper) {
+    p.poly([[x, y], [x + w - 13, y], [x + w, y + 13], [x + w, y + h], [x, y + h]], tone);
+    p.line([[x + w - 13, y], [x + w - 13, y + 13], [x + w, y + 13]], C.rule);
+    for (let i = 0; i < 3; i++) p.line([[x + 11, y + 28 + i * 12], [x + w - 11, y + 28 + i * 12]], i ? C.rule : C.accent);
+  }
+  _coin(p, x, y, tone = C.gold, radius = 10) {
+    p.ellipse(x, y, radius, radius, tone, C.ink);
+    p.ellipse(x, y, radius * .65, radius * .65, null, C.wash);
+    p.line([[x - 2, y - 3], [x + 2, y + 3]], C.paper, 1.5);
+  }
 
   _world(index, o, p, growth) {
     const ctx = this.ctx, pulse = this.motion ? (this.clock * .16) % 1 : .5;
@@ -283,6 +302,97 @@ export class StoryStage {
       p.ellipse(0, 103, 45, 7, C.gold, C.ink); p.ellipse(0, 114, 8, 8, C.ink); p.ellipse(0, 8, 6, 7, C.gold, C.ink); p.line([[-17, 37], [-20, 78]], C.wash, 3); ctx.restore();
       p.line([[339, 307], [386, 341]], C.ink, 2); p.ellipse(388, 343, 9, 5, C.gold, C.ink);
       if (this.bell.rung) for (let i = 0; i < 3; i++) { p.line([[217 - i * 11, 219 + i * 24], [203 - i * 13, 211 + i * 24]], C.gold, 2); p.line([[383 + i * 10, 219 + i * 24], [397 + i * 12, 211 + i * 24]], C.gold, 2); }
+    } else this._extensionWorld(index, o, p, pulse);
+  }
+
+  _extensionWorld(index, o, p, pulse) {
+    if (index === 9) {
+      // One workbench; the selected product lights up its corresponding tool.
+      const code = o.product === 'code', cowork = o.product === 'cowork', platform = o.product === 'platform';
+      p.line([[85, 146], [515, 146]], C.rule); p.line([[109, 148], [109, 174]], C.rule); p.line([[490, 148], [490, 174]], C.rule);
+      p.poly([[87, 319], [480, 319], [516, 338], [115, 338]], C.paper); p.line([[119, 339], [119, 402]], C.ink, 2); p.line([[498, 339], [498, 402]], C.ink, 2);
+      this._monitor(p, 96, 211, 130, 89);
+      p.rect(102, 217, 118, 69, code ? C.wash : C.ghost, null);
+      p.line([[117, 236], [128, 244], [117, 252]], code ? C.accent : C.ink, 2); p.line([[140, 251], [174, 251]], C.soft, 2);
+      p.line([[117, 269], [196, 269]], C.rule);
+      this._document(p, 394, 228, 58, 80, C.ghost); this._document(p, 383, 218, 58, 80, cowork ? C.wash : C.paper);
+      p.line([[377, 308], [462, 308]], C.rule); this._plant(p, 470, 290, .6);
+      p.ellipse(304, 222, 32, 32, platform ? C.wash : C.paper, C.ink);
+      p.line([[293, 210], [282, 222], [293, 234]], platform ? C.accent : C.ink, 2);
+      p.line([[315, 210], [326, 222], [315, 234]], platform ? C.accent : C.ink, 2);
+      p.line([[309, 207], [299, 238]], C.rule);
+      [[251, 172], [358, 166], [345, 280]].forEach(([x, y], i) => {
+        const start = [304 + (x - 304) * .45, 222 + (y - 222) * .45], t = (pulse + i / 3) % 1;
+        p.line([start, [x, y]], C.rule); p.rect(x - 8, y - 8, 16, 16, platform ? C.wash : C.paper, C.rule);
+        if (platform) p.ellipse(start[0] + (x - start[0]) * t, start[1] + (y - start[1]) * t, 3, 3, C.accent);
+      });
+    } else if (index === 10) {
+      // Client tiers select a connection, never a quantitative building scale.
+      const selected = ['100k', '1m', '10m'].indexOf(o.customerTier);
+      const nodes = [[142, 286], [306, 195], [461, 283]];
+      p.ellipse(302, 305, 233, 75, null, C.rule);
+      nodes.forEach(([x, y], i) => {
+        p.line([[300, 326], [x, y]], i === selected ? C.accent : C.rule, i === selected ? 2.4 : 1.4);
+        if (i === selected) p.ellipse(300 + (x - 300) * pulse, 326 + (y - 326) * pulse, 5, 5, C.gold);
+      });
+      this._building(p, 90, 286, 104, 128, selected === 0 ? C.wash : C.paper);
+      this._building(p, 263, 195, 86, 89, selected === 1 ? C.wash : C.paper);
+      this._building(p, 416, 283, 90, 156, selected === 2 ? C.wash : C.paper);
+      p.ellipse(300, 326, 34, 13, C.wash, C.rule);
+      this._person(p, 108, 362, .72); this._person(p, 173, 337, .63); this._person(p, 448, 350, .72); this._person(p, 506, 366, .6);
+      p.line([[156, 314], [206, 284], [249, 291]], C.rule); p.line([[349, 291], [388, 319], [440, 323]], C.rule);
+      this._plant(p, 223, 366, .8); this._plant(p, 386, 369, .7);
+    } else if (index === 11) {
+      const operations = o.lens === 'operations', net = o.lens === 'net', cash = o.lens === 'cash';
+      // The tilt is an illustration; the financial figures remain in the DOM.
+      p.line([[343, 179], [343, 338]], C.ink, 3); p.poly([[312, 347], [343, 327], [374, 347]], C.ghost);
+      p.line([[236, 194], [450, 215]], operations ? C.accent : C.ink, 3); p.ellipse(343, 204, 7, 7, C.gold, C.ink);
+      [[250, 196, 268], [433, 213, 285]].forEach(([x, y, base]) => {
+        p.line([[x, y], [x - 35, base], [x + 35, base], [x, y]], C.rule);
+        p.poly([[x - 37, base], [x + 37, base], [x + 27, base + 16], [x - 27, base + 16]], operations ? C.wash : C.paper);
+      });
+      this._coin(p, 243, 252); this._coin(p, 260, 253, C.gold, 8); this._rack(p, 414, 242, 38, 43);
+      this._document(p, 99, 206, 71, 92, net ? C.wash : C.paper);
+      p.line([[118, 229], [130, 241], [152, 218]], net ? C.accent : C.rule, 2);
+      if (net) { p.ellipse(175, 282, 22, 22, null, C.accent); p.line([[189, 298], [208, 317]], C.accent, 3); }
+      p.rect(393, 340, 102, 62, cash ? C.wash : C.paper); p.poly([[393, 340], [404, 324], [483, 324], [495, 340]], cash ? C.wash : C.ghost);
+      p.rect(438, 338, 13, 24, C.gold); p.line([[403, 382], [484, 382]], C.rule);
+      this._coin(p, 408, 310, cash ? C.gold : C.ghost, 12); this._coin(p, 435, 309, cash ? C.gold : C.ghost, 10);
+      if (cash) p.line([[359, 342], [359, 371], [382, 371]], C.accent, 2);
+      this._plant(p, 289, 382, .8);
+    } else if (index === 12) {
+      const risk = o.risk, tone = kind => risk === kind ? C.accent : C.rule;
+      p.line([[280, 414], [280, 319], [153, 260]], C.rule, 2); p.line([[308, 414], [308, 319], [447, 260]], C.rule, 2);
+      p.line([[294, 343], [294, 213]], C.rule, 2);
+      p.line([[294, 328], [294, 307]], C.gold, 2); p.line([[294, 290], [294, 270]], C.gold, 2);
+      this._rack(p, 409, 170, 54, 100); p.line([[436, 272], [483, 272], [483, 307], [431, 307]], tone('compute'), 2);
+      p.line([[428, 301], [434, 307], [428, 313]], tone('compute'), 2);
+      p.line([[91, 261], [91, 176]], tone('competition'), 2); p.poly([[91, 177], [137, 192], [91, 207]], risk === 'competition' ? C.wash : C.paper);
+      p.line([[177, 261], [177, 184]], tone('competition'), 2); p.poly([[177, 185], [137, 204], [177, 218]], C.ghost);
+      p.poly([[261, 140], [294, 126], [328, 140], [322, 186], [294, 211], [267, 186]], risk === 'trust' ? C.wash : C.paper);
+      p.line([[302, 137], [290, 156], [302, 164], [285, 189]], tone('trust'), 2.2);
+      p.ellipse(430, 361, 29, 29, C.paper, tone('control')); p.ellipse(430, 361, 6, 6, C.gold);
+      [[410, 341], [451, 341], [430, 390]].forEach(([x, y]) => p.line([[430, 361], [x, y]], tone('control'), 2));
+      p.line([[430, 392], [430, 407]], C.rule); this._plant(p, 139, 374, .9);
+      const selected = { compute: [480, 180], competition: [155, 152], trust: [342, 137], control: [471, 339] }[risk];
+      p.ellipse(...selected, 8, 8, C.wash); p.ellipse(...selected, 3, 3, C.accent);
+    } else if (index === 13) {
+      const price = clamp((o.sharePrice - 5) / 95, 0, 1), issued = clamp((o.shareCount - 10) / 10, 0, 1);
+      p.rect(334, 145, 155, 125, C.paper); p.rect(341, 152, 141, 111, C.ghost, C.rule);
+      p.line([[356, 269], [342, 318]], C.ink, 2); p.line([[466, 269], [480, 318]], C.ink, 2);
+      // A price marker and token tray represent the imaginary model, not company data.
+      p.line([[367, 240], [367, 177]], C.rule, 2); p.line([[362, 177], [372, 177]], C.rule); p.line([[362, 240], [372, 240]], C.rule);
+      p.line([[365, 234 - price * 51], [429, 234 - price * 51]], C.accent, 2); this._coin(p, 443, 234 - price * 51, C.gold, 13);
+      p.poly([[109, 319], [481, 319], [517, 342], [142, 342]], C.paper); p.line([[147, 343], [147, 403]], C.ink, 2); p.line([[502, 343], [502, 403]], C.ink, 2);
+      p.rect(219, 271, 87, 47, C.paper, C.rule); p.rect(319, 271, 87, 47, C.paper, C.rule);
+      for (let i = 0; i < 8; i++) {
+        const x = 231 + i % 4 * 21, y = 283 + Math.floor(i / 4) * 22;
+        this._coin(p, x, y, C.gold, 7);
+        if (i < Math.round(issued * 8)) this._coin(p, x + 100, y, C.accent, 7);
+        else p.ellipse(x + 100, y, 7, 7, null, C.rule);
+      }
+      this._document(p, 117, 221, 55, 79); p.line([[185, 257], [202, 257]], C.rule); p.line([[196, 252], [202, 257], [196, 262]], C.rule);
+      this._person(p, 460, 381, .66); p.ellipse(460, 367, 32, 40, null, C.rule);
     }
   }
 
