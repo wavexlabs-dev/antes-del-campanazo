@@ -2,10 +2,10 @@
   "name": "antes-del-campanazo",
   "private": true,
   "type": "module",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "scripts": {
     "dev": "node server.mjs",
     "test": "node --test tests/*.test.js",
-    "check": "node --check dist/app.js && node --check dist/data.js && node --check dist/enrichment.js && node --check dist/stage.js && node --check dist/expense-scene.js"
+    "check": "node --check dist/app.js && node --check dist/data.js && node --check dist/enrichment.js && node --check dist/stage.js && node --check dist/expense-scene.js && node --check dist/race-scene.js && node --check dist/figures.js && node --check dist/hairline/registry.js && node --check dist/vendor/hairline-kernel.js"
   }
 }

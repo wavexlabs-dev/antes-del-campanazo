@@ -18,7 +18,9 @@ export function getExpenseTotals() {
 const mounts = new WeakMap();
 const money = n => n.toLocaleString('en-US');
 const cents = n => n.toFixed(1);
-const mascot = `<svg class="expense-mascot-svg" viewBox="0 0 80 72" aria-hidden="true" focusable="false"><ellipse cx="40" cy="67" rx="29" ry="4" fill="#292b25" opacity=".1"/><g class="expense-mascot-body" fill="#bd5b3d"><path d="M18 14h44v35H18z"/><path class="expense-arm-left" d="M11 25h7v20h-7z"/><path class="expense-arm-right" d="M62 25h7v20h-7z"/><g fill="#24251f" class="expense-eyes"><path d="M28 27h5v8h-5zM49 27h5v8h-5z"/></g></g><g fill="#bd5b3d"><path class="expense-foot-a" d="M21 49h7v14h-7zM42 49h6v10h-6z"/><path class="expense-foot-b" d="M32 49h6v10h-6zM53 49h7v14h-7z"/></g></svg>`;
+// The SVG twin of the stage character, shared with the valuation race. Same drawing, never altered.
+export const MASCOT_SVG = `<svg class="expense-mascot-svg" viewBox="0 0 80 72" aria-hidden="true" focusable="false"><ellipse cx="40" cy="67" rx="29" ry="4" fill="#292b25" opacity=".1"/><g class="expense-mascot-body" fill="#bd5b3d"><path d="M18 14h44v35H18z"/><path class="expense-arm-left" d="M11 25h7v20h-7z"/><path class="expense-arm-right" d="M62 25h7v20h-7z"/><g fill="#24251f" class="expense-eyes"><path d="M28 27h5v8h-5zM49 27h5v8h-5z"/></g></g><g fill="#bd5b3d"><path class="expense-foot-a" d="M21 49h7v14h-7zM42 49h6v10h-6z"/><path class="expense-foot-b" d="M32 49h6v10h-6zM53 49h7v14h-7z"/></g></svg>`;
+const mascot = MASCOT_SVG;
 
 /** Mount once inside an empty element; the caller owns the surrounding chapter. */
 export function mountExpenseScene({ root, gsap, ScrollTrigger, motion = true } = {}) {

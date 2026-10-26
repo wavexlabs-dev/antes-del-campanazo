@@ -135,7 +135,7 @@
     "language": "es-MX",
     "methodology": {
       "label_es": "Ingresos en sus años 3, 4 y 5",
-      "subtitle_es": "Contamos el año de constitución como año 1. Cada cifra corresponde a un ejercicio anual completo terminado el 31 de diciembre.",
+      "subtitle_es": "Contamos el año de constitución como año 1. Cada cifra corresponde a un ejercicio anual completo; Salesforce cierra su año fiscal el 31 de enero.",
       "age_index_formula": "calendar_year - incorporation_year + 1",
       "age_definition": "Ordinal calendar year since incorporation, inclusive. Not exact elapsed age, anniversary year, years since first revenue or years since commercial launch.",
       "unit": "USD millions",
@@ -234,6 +234,68 @@
         "model_context_es": "Principalmente publicidad en buscadores. El S-1/A final reconoce los ingresos de AdSense brutos porque Google es el obligado principal; los pagos a socios aparecen como costos de adquisición de tráfico.",
         "accounting_locator": "Notes to Consolidated Financial Statements, Revenue Recognition, printed F-9; Cost of Revenues section",
         "source_version_note": "Use the August 18, 2004 Amendment No. 9. The initial April 29 S-1 reported net revenues of 347.848M for 2002, while the final amended presentation reports revenues of 439.508M. Do not mix the initial net presentation with the final gross presentation."
+      },
+      {
+        "id": "facebook",
+        "name": "Facebook",
+        "incorporation_year": 2004,
+        "origin_source_id": "facebook_2012_s1",
+        "origin_locator": "Corporate Information: 'We were incorporated in Delaware in July 2004.'",
+        "revenue_label": "Revenue",
+        "revenue_source_id": "facebook_2012_s1",
+        "revenue_locator": "Selected Consolidated Financial Data, Consolidated Statements of Operations Data, Revenue row (USD millions)",
+        "records": [
+          {
+            "age_index": 3,
+            "calendar_year": 2006,
+            "revenue_usd_millions": null,
+            "note": "Not reported in the S-1; left empty rather than estimated."
+          },
+          {
+            "age_index": 4,
+            "calendar_year": 2007,
+            "revenue_usd_millions": 153
+          },
+          {
+            "age_index": 5,
+            "calendar_year": 2008,
+            "revenue_usd_millions": 272
+          }
+        ],
+        "model_context_es": "Red social financiada sobre todo con publicidad."
+      },
+      {
+        "id": "salesforce",
+        "name": "Salesforce",
+        "incorporation_year": 1999,
+        "origin_source_id": "salesforce_fy2005_10k",
+        "origin_locator": "Item 1: 'We were incorporated in Delaware in February 1999.'",
+        "revenue_label": "Total revenues",
+        "revenue_source_id": "salesforce_fy2005_10k",
+        "revenue_locator": "Item 6 Selected Financial Data, Total revenues row; values in thousands converted to millions",
+        "fiscal_year_end": "January 31",
+        "records": [
+          {
+            "age_index": 3,
+            "calendar_year": 2001,
+            "fiscal_year": "FY2002 (Feb 2001–Jan 2002)",
+            "revenue_usd_millions": 22.409
+          },
+          {
+            "age_index": 4,
+            "calendar_year": 2002,
+            "fiscal_year": "FY2003 (Feb 2002–Jan 2003)",
+            "revenue_usd_millions": 50.991
+          },
+          {
+            "age_index": 5,
+            "calendar_year": 2003,
+            "fiscal_year": "FY2004 (Feb 2003–Jan 2004)",
+            "revenue_usd_millions": 96.023
+          }
+        ],
+        "model_context_es": "Software en la nube por suscripción. Su año fiscal termina el 31 de enero; se alinea con el año calendario en que transcurren once de sus doce meses.",
+        "source_version_note": "The fiscal-year offset is one month; disclosed in the page's methodology."
       }
     ],
     "sources": [
@@ -276,6 +338,18 @@
           "2001": 86426,
           "2002": 439508
         }
+      },
+      {
+        "id": "facebook_2012_s1",
+        "title": "Facebook, Inc. — Form S-1 (February 1, 2012)",
+        "url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312512034517/d287954ds1.htm",
+        "type": "SEC registration statement"
+      },
+      {
+        "id": "salesforce_fy2005_10k",
+        "title": "salesforce.com — Form 10-K for fiscal 2005 (filed March 25, 2005)",
+        "url": "https://www.sec.gov/Archives/edgar/data/1108524/000119312505061027/d10k.htm",
+        "type": "SEC annual report"
       }
     ],
     "derived_comparisons": {
@@ -288,7 +362,8 @@
         },
         "derivation": "4585 / 609.819 and 4585 / 439.508; rounded approximations",
         "copy_es": "En el quinto año calendario contado desde su constitución, Anthropic reportó ingresos anuales 7.5 veces los de Amazon y 10.4 veces los de Google en esa etapa. Son dólares nominales de épocas y negocios distintos."
-      }
+      },
+      "note_es": "La página calcula el cociente contra la empresa con más ingresos de las demás en cada año: año 3, Salesforce (1.8×); año 4, Facebook (2.5×); año 5, Amazon (7.5×)."
     },
     "exclude_from_same_age_annual_chart": [
       "Anthropic H1 2026 revenue of USD16,286M: only six months and age index6, so do not put it next to a full annual value.",
@@ -297,13 +372,10 @@
       "Do not label the index exact age3/4/5 or exactly five years after founding."
     ],
     "valuation_chart_reference": {
-      "provided_by": "user",
-      "visible_attribution": "SemiAnalysis watermark",
-      "original_source_url": null,
-      "original_publication_date": null,
-      "verification_status": "Original publication was not located in targeted web searches. Attribution is based only on the visible watermark, not verified provenance.",
-      "recommended_caption_es": "Referencia compartida por el usuario. Marca visible: SemiAnalysis. Fecha y metodología originales no verificadas. La gráfica muestra valuaciones, no ingresos.",
-      "handling": "Keep the supplied image as a separate visual reference. Do not infer exact datapoints or treat private-company valuations and public market capitalization as a standardized revenue comparison."
+      "status": "replaced",
+      "replaced_on": "2026-10-26",
+      "by": "race_to_first_trillion",
+      "note": "The user-supplied image with a SemiAnalysis watermark is no longer shown. The page draws its own chart from the sources below."
     }
   },
   "business_enrichment": {
@@ -1384,5 +1456,121 @@
       "scope": "Global data centres, central projection; not Anthropic consumption.",
       "license": "CC BY 4.0; summarized adaptation"
     }
-  ]
+  ],
+  "race_to_first_trillion": {
+    "measure_es": "Años desde la fundación hasta el primer día con una capitalización bursátil de un billón de dólares (10^12), frente a la valuación privada post-money de Anthropic.",
+    "companies": [
+      {
+        "name": "Meta",
+        "founded": "2004-02-04",
+        "first_trillion": "2021-06-28"
+      },
+      {
+        "name": "Tesla",
+        "founded": "2003-07-01",
+        "first_trillion": "2021-10-25"
+      },
+      {
+        "name": "Alphabet",
+        "founded": "1998-09-04",
+        "first_trillion": "2020-01-16"
+      },
+      {
+        "name": "Amazon",
+        "founded": "1994-07-05",
+        "first_trillion": "2018-09-04"
+      },
+      {
+        "name": "Nvidia",
+        "founded": "1993-04-05",
+        "first_trillion": "2023-05-30"
+      },
+      {
+        "name": "Apple",
+        "founded": "1976-04-01",
+        "first_trillion": "2018-08-02"
+      },
+      {
+        "name": "Microsoft",
+        "founded": "1975-04-04",
+        "first_trillion": "2019-04-25"
+      }
+    ],
+    "first_trillion_source": "https://en.wikipedia.org/wiki/List_of_public_corporations_by_market_capitalization",
+    "anthropic": {
+      "founded": "2021-01",
+      "valuation_usd_billions": 965,
+      "date": "2026-05-28",
+      "kind": "Series H post-money valuation (private round), not market capitalization",
+      "source": "https://www.anthropic.com/news/series-h"
+    },
+    "limits_es": "Una ronda privada la pactan pocos inversionistas; la capitalización la fija el mercado cada día. Dólares nominales, sin ajustar por inflación."
+  },
+  "quarterly_revenue": {
+    "source": "S-1, p.157 (PDF168), unaudited quarterly table",
+    "unit": "USD millions",
+    "values": {
+      "Q1_2025": 376,
+      "Q2_2025": 787,
+      "Q3_2025": 1382,
+      "Q4_2025": 2040,
+      "Q1_2026": 4731,
+      "Q2_2026": 11555
+    },
+    "checks": "Q1+Q2 2025 = 1,163 (H1 2025); Q1+Q2 2026 = 16,286 (H1 2026); 2025 quarters = 4,585 (FY2025)."
+  },
+  "turning_points": [
+    {
+      "id": "giro-2022",
+      "date": "2022 (summer–November)",
+      "fact_es": "Anthropic terminó de entrenar la primera versión de Claude y decidió no lanzarla para seguir con pruebas internas de seguridad; unos tres meses después, OpenAI lanzó ChatGPT (30 de noviembre de 2022).",
+      "sources": [
+        "https://time.com/6980000/anthropic/",
+        "https://openai.com/index/chatgpt/"
+      ],
+      "context_es": "La Serie B de abril de 2022 (580 millones) fue encabezada por Sam Bankman-Fried, entonces director de FTX; FTX quebró en noviembre de 2022.",
+      "context_source": "https://www.anthropic.com/news/anthropic-raises-series-b-to-build-safe-reliable-ai"
+    },
+    {
+      "id": "giro-libros",
+      "date": "2025-09",
+      "fact_es": "Acuerdo de 1,500 millones de dólares para resolver la demanda colectiva Bartz; aprobado por el tribunal en julio de 2026; registrado como gasto en julio–septiembre de 2025 (pérdida operativa del trimestre: 3,089 millones).",
+      "sources": [
+        "S-1, risk factors and p.157 (PDF168)"
+      ]
+    },
+    {
+      "id": "giro-escala",
+      "date": "2026-H1",
+      "fact_es": "Ingresos de 16,286 millones en enero–junio de 2026 frente a 1,163 millones en el mismo semestre de 2025 (≈14×).",
+      "sources": [
+        "S-1, p.22 (PDF33) and p.157 (PDF168)"
+      ]
+    },
+    {
+      "id": "giro-mythos",
+      "date": "2026-04 to 2026-07",
+      "fact_es": "Mythos se presentó en abril de 2026 como vista previa restringida (Project Glasswing). El 12 de junio, una restricción de exportación del gobierno de Estados Unidos obligó a desactivar Fable 5 y Mythos 5 para todos los clientes; volvieron tras levantarse las restricciones, con salvaguardas actualizadas.",
+      "dates": {
+        "released": "2026-06-09",
+        "disabled": "2026-06-12",
+        "restrictions_lifted": "2026-06-30",
+        "restored": "2026-07-01"
+      },
+      "sources": [
+        "S-1, risk factors (export controls; Mythos and Project Glasswing)",
+        "https://www.anthropic.com/glasswing",
+        "https://www.anthropic.com/news/fable-mythos-access"
+      ]
+    }
+  ],
+  "figures": {
+    "library": "Hairline kernel (MIT, Lucas Marques), dist/vendor/hairline-kernel.js",
+    "figures": [
+      "cajon",
+      "estante",
+      "vitrina"
+    ],
+    "made_with": "hairline-create skill: each figure passed validate.mjs and look.mjs before it was added."
+  }
 }

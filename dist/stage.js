@@ -5,9 +5,11 @@ const C = Object.freeze({
   leaf: '#8a9675', cream: '#fffaf0', eye: '#24251f', blue: '#758e99'
 });
 const POSES = [
-  [248, 354, .88], [210, 354, 1], [214, 350, 1.18], [301, 365, .85],
+  [248, 354, .88], [210, 354, 1], [214, 350, 1.18], [81, 371, .66],
   [69, 389, .57], [227, 358, .98], [304, 339, .92], [172, 354, 1.05], [258, 348, 1.16],
-  [248, 354, .95], [287, 355, .94], [182, 355, .96], [293, 369, .94], [198, 357, .97]
+  [248, 354, .95], [287, 355, .94], [182, 355, .96], [293, 369, .94], [198, 357, .97],
+  // 14: 2022, the room at night · 15: the bookshelves · 16: the glass case
+  [246, 356, .88], [306, 356, .95], [118, 358, .9]
 ];
 const DEFAULTS = {
   year: 2025, age: 5, branch: -1, economy: 'adoption', flow: 'primary',
@@ -54,7 +56,8 @@ export class StoryStage {
     if (this._disposed) return;
     const next = clamp(Number.isFinite(index) ? Math.round(index) : 0, 0, POSES.length - 1);
     const opts = { ...this.options, ...options };
-    opts.year = [2023, 2024, 2025].includes(opts.year) ? opts.year : 2025;
+    // 2026 only reaches the stage through the "catorce veces" turn; the revenue buttons stay at 2023–2025.
+    opts.year = [2023, 2024, 2025, 2026].includes(opts.year) ? opts.year : 2025;
     opts.age = [3, 4, 5].includes(opts.age) ? opts.age : 5;
     opts.lens = ['operations', 'net', 'cash'].includes(opts.lens) ? opts.lens : DEFAULTS.lens;
     opts.risk = ['compute', 'competition', 'trust', 'control'].includes(opts.risk) ? opts.risk : DEFAULTS.risk;
@@ -88,11 +91,12 @@ export class StoryStage {
       defaults: { ease: 'power2.inOut' },
       onUpdate: () => this.draw(),
       onComplete: () => { this.previous = null; this.pose.walk = 0; this.draw(); }
-    }).addLabel('depart', 0).addLabel('arrive', .78);
+    }).addLabel('depart', 0).addLabel('arrive', .74);
     if (changed) {
+      // One world leaves, then the next arrives: the two drawings never share the stage at full strength.
       this.pose.walk = 1;
-      this.timeline.to(this.travel, { progress: 1, duration: .92 }, 'depart')
-        .to(this.pose, { ...target, walk: 1, duration: .78 }, 'depart+=.06')
+      this.timeline.to(this.travel, { progress: 1, duration: .9, ease: 'none' }, 'depart')
+        .to(this.pose, { ...target, walk: 1, duration: .74 }, 'depart+=.08')
         .to(this.pose, { walk: 0, duration: .2 }, 'arrive');
     } else {
       this.timeline.to(this.pose, { ...target, duration: .42 }, 'depart');
@@ -170,6 +174,7 @@ export class StoryStage {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, width, height);
     const scale = Math.min(width / 600, height / 460);
+    this._scale = scale;
     ctx.save(); ctx.translate((width - 600 * scale) / 2, height - 460 * scale); ctx.scale(scale, scale);
     // A restrained shared camera drift joins the drawing to the page's scroll.
     if (this.motion) ctx.translate(0, -this.sectionProgress * 10);
@@ -177,12 +182,18 @@ export class StoryStage {
     const p = this._painter();
     if (this.index !== 4 || this.previous) p.line([[30, 409], [570, 409]], C.rule);
     if (this.previous && this.travel.progress < 1) {
+      // Sequential, not a crossfade: the old world is gone before the new one is fully drawn.
       const t = this.travel.progress, direction = this.travel.direction;
-      ctx.save(); ctx.translate(-t * 185 * direction, t * 9); ctx.globalAlpha = 1 - t;
-      this._world(this.previous.index, this.previous.options, p, this.previous.growth); ctx.restore();
-      ctx.save(); ctx.translate((1 - t) * 185 * direction, -(1 - t) * 8);
-      ctx.globalAlpha = Math.min(t * 1.7 + .12, 1);
-      this._world(this.index, this.options, p, this.detail.growth); ctx.restore();
+      const ease = x => x * x * (3 - 2 * x);
+      const out = ease(clamp(t / .46, 0, 1)), arrive = ease(clamp((t - .38) / .62, 0, 1));
+      if (out < 1) {
+        ctx.save(); ctx.translate(-out * 70 * direction, 0); ctx.globalAlpha = 1 - out;
+        this._world(this.previous.index, this.previous.options, p, this.previous.growth); ctx.restore();
+      }
+      if (arrive > 0) {
+        ctx.save(); ctx.translate((1 - arrive) * 70 * direction, 0); ctx.globalAlpha = arrive;
+        this._world(this.index, this.options, p, this.detail.growth); ctx.restore();
+      }
     } else this._world(this.index, this.options, p, this.detail.growth);
     this._character(p);
     ctx.restore();
@@ -190,7 +201,11 @@ export class StoryStage {
 
   _painter() {
     const ctx = this.ctx;
+    // Hairline: the secondary detail stroke. At least half a CSS pixel at any stage size.
+    const hw = Math.max(.6, .5 / (this._scale || 1));
     return {
+      hair(points, color = C.soft, alpha = .75) { ctx.save(); ctx.globalAlpha *= alpha; ctx.strokeStyle = color; ctx.lineWidth = hw; ctx.beginPath(); points.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke(); ctx.restore(); },
+      hairs(segments, color = C.soft, alpha = .75) { ctx.save(); ctx.globalAlpha *= alpha; ctx.strokeStyle = color; ctx.lineWidth = hw; ctx.beginPath(); for (const [[x0, y0], [x1, y1]] of segments) { ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); } ctx.stroke(); ctx.restore(); },
       line(points, color = C.ink, width = 1.45) { ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath(); points.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke(); },
       rect(x, y, w, h, fill = null, stroke = C.ink, weight = 1.4) { if (fill) { ctx.fillStyle = fill; ctx.fillRect(x, y, w, h); } if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = weight; ctx.strokeRect(x, y, w, h); } },
       ellipse(x, y, rx, ry, fill = null, stroke = null) { ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2); if (fill) { ctx.fillStyle = fill; ctx.fill(); } if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1.3; ctx.stroke(); } },
@@ -253,19 +268,45 @@ export class StoryStage {
         p.line([[x + 25, y + 13 + dy], [x + w - 12, y + 13 + dy]], C.rule); p.line([[x + 12, y + 29 + dy], [x + w - 12, y + 29 + dy]], C.rule);
       }); this._person(p, 493, 376, .75);
     } else if (index === 2) {
-      const g = clamp(growth, 0, 2); this._building(p, 108, 401, 121, 112 + g * 35);
-      if (g > .05) this._building(p, 234, 401, 79, 90 + g * 49); if (g > 1.05) this._building(p, 320, 401, 65, 114 + (g - 1) * 28);
-      this._plant(p, 87, 378); this._person(p, 420, 377, .6); this._person(p, 457, 376, .52);
-      p.line([[163, 289 - g * 35], [163, 261 - g * 35]], C.rule); p.poly([[163, 261 - g * 35], [186, 266 - g * 35], [163, 272 - g * 35]], C.accent, null);
-      for (let i = 0; i < 4 + Math.round(g) * 2; i++) p.rect(390 + i % 4 * 24, 333 - Math.floor(i / 4) * 22, 16, 11, C.paper, C.rule);
+      // growth 0–2 follows the revenue year; 3 is the first half of 2026, where a crane joins the block.
+      const g = clamp(growth, 0, 3), big = clamp(g - 2, 0, 1); this._building(p, 108, 401, 121, 112 + Math.min(g, 2) * 35);
+      if (g > .05) this._building(p, 234, 401, 79, 90 + Math.min(g, 2) * 49); if (g > 1.05) this._building(p, 320, 401, 65, 114 + (Math.min(g, 2) - 1) * 28);
+      if (big > .02) this._building(p, 396, 401, 74, 60 + big * 230);
+      this._plant(p, 87, 378);
+      const moved = big > .02, px = moved ? [512, 548] : [420, 457]; this._person(p, px[0], 377, .6); this._person(p, px[1], 376, .52);
+      const gf = Math.min(g, 2); p.line([[163, 289 - gf * 35], [163, 261 - gf * 35]], C.rule); p.poly([[163, 261 - gf * 35], [186, 266 - gf * 35], [163, 272 - gf * 35]], C.accent, null);
+      const crates = moved ? 9 : 4 + Math.round(gf) * 2, cols = moved ? 3 : 4, cx = moved ? 484 : 390;
+      for (let i = 0; i < crates; i++) p.rect(cx + i % cols * 24, 333 - Math.floor(i / cols) * 22, 16, 11, C.paper, C.rule);
+      if (big > .4) {
+        // A tower crane in hairline lattice, lowering the last floor onto the new tower.
+        const a = clamp((big - .4) / .6, 0, 1), ctx = this.ctx; ctx.save(); ctx.globalAlpha *= a;
+        p.line([[566, 401], [566, 92]], C.ink, 1.2); p.line([[580, 401], [580, 92]], C.ink, 1.2);
+        const lattice = []; for (let y = 401; y > 100; y -= 16) lattice.push([[566, y], [580, y - 16]], [[566, y - 16], [580, y - 16]]);
+        p.hairs(lattice, C.soft, .8);
+        p.line([[352, 84], [596, 84]], C.ink, 1.2); p.line([[352, 92], [596, 92]], C.ink, 1.2);
+        const jib = []; for (let x = 352; x < 590; x += 14) jib.push([[x, 92], [x + 7, 84]], [[x + 7, 84], [x + 14, 92]]);
+        p.hairs(jib, C.soft, .8);
+        p.rect(560, 92, 26, 14, C.paper, C.ink, 1.2); p.hair([[566, 99], [580, 99]], C.soft);
+        p.rect(426, 92, 14, 5, C.ghost, C.ink, 1); p.hair([[433, 97], [433, 114]], C.ink, .9);
+        p.rect(412, 114, 42, 6, C.accent, null); ctx.restore();
+      }
     } else if (index === 3) {
-      [105, 258, 411].forEach((x, i) => {
-        p.rect(x, 194, 112, 143, null, C.rule); p.poly([[x - 8, 337], [x + 120, 337], [x + 115, 354], [x - 3, 354]], C.ghost);
-        p.line([[x + 10, 356], [x + 10, 404]], C.rule); p.line([[x + 103, 356], [x + 103, 404]], C.rule);
-        const n = o.age - 2; for (let j = 0; j < n; j++) p.rect(x + 31 + j * 5, 285 - j * 9, 42, 22, i ? C.paper : C.wash, C.ink);
-        p.line([[x + 15, 208], [x + 44, 208]], i ? C.blue : C.accent, 2); p.line([[x + 16, 226], [x + 94, 226]], C.rule);
+      // Five desks: Anthropic, Amazon, Google, Facebook and Salesforce. Stacks follow the age, not the money.
+      const xs = [40, 152, 264, 376, 488], w = 82;
+      xs.forEach((x, i) => {
+        p.rect(x, 206, w, 131, null, C.rule); p.poly([[x - 6, 337], [x + w + 6, 337], [x + w + 2, 352], [x - 2, 352]], C.ghost);
+        p.line([[x + 8, 354], [x + 8, 404]], C.rule); p.line([[x + w - 8, 354], [x + w - 8, 404]], C.rule);
+        p.hairs([[[x + 6, 344], [x + w - 6, 344]], [[x + w / 2, 352], [x + w / 2, 337]]], C.soft, .45);
+        const n = o.age - 2;
+        if (i === 3 && o.age === 3) {
+          // Facebook's third year is not in its prospectus: an outline, not a stack.
+          const ctx = this.ctx; ctx.save(); ctx.setLineDash([3, 3]); p.rect(x + 22, 312, 36, 20, null, C.soft, 1); ctx.restore();
+        } else for (let j = 0; j < n; j++) p.rect(x + 22 + j * 4, 312 - j * 8, 36, 20, i ? C.paper : C.wash, C.ink);
+        p.line([[x + 10, 220], [x + 32, 220]], i ? C.blue : C.accent, 2); p.line([[x + 10, 236], [x + w - 10, 236]], C.rule);
+        p.hairs([[[x + 10, 248], [x + w - 16, 248]], [[x + 10, 258], [x + w - 24, 258]]], C.soft, .5);
       });
-      p.line([[66, 168], [552, 168]], C.rule); p.line([[66, 163], [66, 175]], C.rule); p.line([[552, 163], [552, 175]], C.rule);
+      p.line([[40, 168], [570, 168]], C.rule); p.line([[40, 163], [40, 175]], C.rule); p.line([[570, 163], [570, 175]], C.rule);
+      p.hairs(xs.map(x => [[x + w / 2, 168], [x + w / 2, 206]]), C.soft, .5);
     } else if (index === 4) {
       // The user's original chart is a DOM image above this small guide.
     } else if (index === 5) {
@@ -393,7 +434,100 @@ export class StoryStage {
       }
       this._document(p, 117, 221, 55, 79); p.line([[185, 257], [202, 257]], C.rule); p.line([[196, 252], [202, 257], [196, 262]], C.rule);
       this._person(p, 460, 381, .66); p.ellipse(460, 367, 32, 40, null, C.rule);
-    }
+    } else if (index === 14) this._nightRoom(p);
+    else if (index === 15) this._library(p);
+    else if (index === 16) this._glassCase(p);
+  }
+
+  /** 2022: the room from the beginning, at night. The desk's top drawer is the one that matters. */
+  _nightRoom(p) {
+    const night = '#3d3f37';
+    p.line([[105, 147], [105, 383], [506, 383]], C.rule); p.line([[105, 147], [243, 102], [506, 151], [506, 383]], C.rule);
+    p.hairs([[[105, 371], [506, 371]], [[30, 395], [570, 395]], [[118, 383], [70, 409]], [[230, 383], [214, 409]], [[350, 383], [356, 409]], [[470, 383], [496, 409]]], C.rule, .9);
+    p.rect(145, 171, 72, 94, night, C.rule);
+    p.ellipse(198, 193, 8, 8, C.cream); p.ellipse(202, 190, 7, 7, night);
+    p.hairs([[160, 188], [171, 238], [206, 248], [158, 252], [190, 226]].flatMap(([x, y]) => [[[x - 2.5, y], [x + 2.5, y]], [[x, y - 2.5], [x, y + 2.5]]]), C.cream, .9);
+    p.line([[181, 171], [181, 265]], C.rule); p.line([[145, 218], [217, 218]], C.rule); p.line([[139, 266], [223, 266]], C.ink, 1.2);
+    // A wall calendar: one day near the end of the month is circled.
+    p.rect(262, 160, 64, 74, C.paper, C.rule); p.rect(262, 160, 64, 12, C.ghost, C.rule);
+    const grid = []; for (let c = 1; c < 7; c++) grid.push([[262 + c * 64 / 7, 176], [262 + c * 64 / 7, 230]]);
+    for (let r = 0; r < 6; r++) grid.push([[264, 176 + r * 10.8], [324, 176 + r * 10.8]]);
+    p.hairs(grid, C.soft, .55); p.ellipse(262 + 1.5 * 64 / 7, 224, 6, 5, null, C.accent);
+    p.line([[294, 154], [294, 160]], C.ink, 1.2);
+    // The desk, a closed laptop and a lamp that is off.
+    p.poly([[160, 312], [394, 312], [424, 328], [187, 328]], C.paper); p.line([[188, 328], [188, 402]], C.ink, 2); p.line([[412, 328], [412, 402]], C.ink, 2);
+    p.poly([[226, 304], [282, 304], [290, 311], [234, 311]], C.ghost); p.hair([[234, 308], [284, 308]], C.soft);
+    p.line([[350, 307], [355, 249], [375, 226]], C.ink, 2); p.poly([[360, 225], [381, 218], [394, 236], [363, 244]], C.ghost); p.ellipse(350, 309, 15, 3, C.paper, C.ink);
+    // The drawer unit. The top drawer's pull is the bright mark.
+    p.rect(318, 328, 82, 66, C.paper, C.ink, 1.4); p.line([[318, 361], [400, 361]], C.ink, 1.2);
+    p.hairs([[[323, 333], [395, 333]], [[323, 356], [395, 356]], [[323, 366], [395, 366]], [[323, 389], [395, 389]]], C.soft, .5);
+    p.line([[348, 345], [370, 345]], C.accent, 2.4); p.line([[348, 378], [370, 378]], C.ink, 1.6);
+    p.hair([[322, 340], [322, 351]], C.soft, .5); p.hair([[396, 340], [396, 351]], C.soft, .5);
+    this._plant(p, 461, 365);
+  }
+
+  /** 2025: shelves of books on one side, the agreement on a table on the other. */
+  _library(p) {
+    const x = 64, w = 168, levels = [204, 258, 312, 366];
+    p.rect(x, 150, w, 252, C.paper, C.ink, 1.4); p.line([[x - 6, 150], [x + w + 6, 150]], C.ink, 2);
+    levels.forEach(y => p.line([[x, y], [x + w, y]], C.ink, 1.2));
+    p.hairs([[[x + 4, 156], [x + 4, 396]], [[x + w - 4, 156], [x + w - 4, 396]]], C.soft, .5);
+    let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+    levels.forEach((base, r) => {
+      let bx = x + 7;
+      while (true) {
+        const bw = 7 + Math.floor(rnd() * 6), bh = 32 + Math.floor(rnd() * 15);
+        if (bx + bw > x + w - 7) break;
+        const pulled = r === 1 && bx > x + 70 && bx < x + 84;
+        if (!pulled) {
+          p.rect(bx, base - bh, bw, bh, rnd() < .14 ? C.ghost : C.paper, C.soft, .9);
+          p.hairs([[[bx + 1.5, base - bh + 5], [bx + bw - 1.5, base - bh + 5]], [[bx + 1.5, base - 7], [bx + bw - 1.5, base - 7]]], C.soft, .5);
+        } else {
+          // One book out of the row: the bright mark of the scene.
+          p.poly([[bx - 3, base - bh - 4], [bx + bw + 3, base - bh - 6], [bx + bw + 8, base + 1], [bx + 2, base + 3]], C.accent, C.ink);
+          p.hair([[bx + 1, base - bh + 4], [bx + bw + 3, base - bh + 2]], C.paper, .9);
+        }
+        bx += bw + 1;
+      }
+    });
+    // The table, the signed agreement, a pen and a short stack of books.
+    p.poly([[372, 318], [520, 318], [532, 331], [382, 331]], C.paper); p.line([[392, 331], [392, 402]], C.ink, 2); p.line([[516, 331], [516, 402]], C.ink, 2);
+    p.line([[423, 318], [431, 300]], C.ink, 1.4); p.line([[439, 318], [431, 300]], C.ink, 1.4);
+    this._document(p, 400, 226, 62, 82);
+    p.line([[408, 292], [414, 285], [419, 294], [425, 284], [431, 293], [438, 287], [450, 290]], C.accent, 1.5);
+    p.line([[464, 315], [484, 304]], C.ink, 2.2); p.hair([[484, 304], [488, 302]], C.ink, .9);
+    [[492, 308, 32], [495, 300, 26], [490, 292, 30]].forEach(([bx, by, bw]) => { p.rect(bx, by, bw, 8, C.paper, C.soft, .9); p.hair([[bx + 2, by + 4], [bx + bw - 2, by + 4]], C.soft, .5); });
+    this._plant(p, 556, 378, .8);
+  }
+
+  /** 2026: a glass case on a plinth under a spotlight, a rope in front and a pause sign beside it. */
+  _glassCase(p) {
+    const ctx = this.ctx;
+    p.ellipse(300, 64, 11, 4, C.paper, C.ink); p.line([[300, 30], [300, 60]], C.ink, 1.2);
+    p.hairs([[[292, 67], [250, 184]], [[308, 67], [350, 184]]], C.rule, .9);
+    p.rect(240, 292, 120, 10, C.ghost, C.ink, 1.2); p.rect(246, 302, 108, 100, C.paper, C.ink, 1.4);
+    p.hairs([[[256, 314], [344, 314]], [[256, 390], [344, 390]], [[256, 314], [256, 390]], [[344, 314], [344, 390]]], C.soft, .5);
+    // The glass: an outline, a lid and a few reflections. Nothing is filled.
+    p.rect(254, 188, 92, 104, null, C.ink, 1.1); p.rect(249, 181, 102, 8, C.ghost, C.ink, 1.2);
+    p.hairs([[[262, 214], [282, 194]], [[262, 232], [296, 198]], [[328, 286], [340, 274]]], C.soft, .7);
+    // A glasswing butterfly on a pin: clear wings, drawn only by their edges and veins.
+    p.line([[300, 292], [300, 262]], C.soft, 1);
+    const wing = (pts) => { p.hair(pts.concat([pts[0]]), C.ink, .9); };
+    wing([[300, 240], [276, 214], [262, 220], [266, 240], [300, 246]]);
+    wing([[300, 240], [324, 214], [338, 220], [334, 240], [300, 246]]);
+    wing([[300, 247], [282, 252], [278, 266], [290, 268], [300, 252]]);
+    wing([[300, 247], [318, 252], [322, 266], [310, 268], [300, 252]]);
+    p.hairs([[[300, 241], [270, 222]], [[300, 241], [330, 222]], [[300, 243], [266, 236]], [[300, 243], [334, 236]], [[300, 249], [284, 262]], [[300, 249], [316, 262]]], C.soft, .55);
+    p.hair([[262, 220], [276, 214]], C.accent, 1); p.hair([[338, 220], [324, 214]], C.accent, 1);
+    p.line([[300, 236], [300, 256]], C.ink, 2); p.hair([[300, 236], [294, 228]], C.ink, .9); p.hair([[300, 236], [306, 228]], C.ink, .9);
+    // The rope barrier between two posts.
+    [190, 410].forEach(x => { p.line([[x, 336], [x, 400]], C.ink, 2); p.ellipse(x, 402, 12, 3, C.ghost, C.ink); p.ellipse(x, 333, 4, 4, C.gold, C.ink); });
+    const rope = []; for (let i = 0; i <= 20; i++) { const t = i / 20; rope.push([194 + t * 212, 338 + Math.sin(t * Math.PI) * 18]); }
+    p.line(rope, C.accent, 2.2);
+    // A pause sign: the June suspension, without words.
+    p.line([[494, 304], [494, 402]], C.ink, 1.6); p.ellipse(494, 402, 10, 3, C.ghost, C.ink);
+    p.ellipse(494, 287, 17, 17, C.paper, C.ink); p.line([[489, 279], [489, 295]], C.ink, 2.4); p.line([[499, 279], [499, 295]], C.ink, 2.4);
+    ctx.lineCap = 'round';
   }
 
   _character(p) {
